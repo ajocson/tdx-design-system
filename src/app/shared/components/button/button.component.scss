@@ -1,0 +1,369 @@
+:host {
+  display: inline-flex;
+}
+
+@mixin filled-button($variant) {
+  background: var(--button-#{$variant}-filled-bg-default);
+  border-color: transparent;
+  color: var(--button-#{$variant}-filled-text);
+
+  .tdx-button__icon,
+  .tdx-button__loading {
+    color: var(--button-#{$variant}-filled-icon);
+  }
+}
+
+@mixin outline-button($variant) {
+  background: transparent;
+  border-color: var(--button-#{$variant}-outline-border);
+  color: var(--button-#{$variant}-outline-text);
+
+  .tdx-button__icon,
+  .tdx-button__loading {
+    color: var(--button-#{$variant}-outline-icon);
+  }
+}
+
+@mixin transparent-button($variant) {
+  background: transparent;
+  border-color: transparent;
+  color: var(--button-#{$variant}-transparent-text-default);
+
+  .tdx-button__icon,
+  .tdx-button__loading {
+    color: var(--button-#{$variant}-transparent-icon-default);
+  }
+}
+
+@mixin hover-filled-button($variant) {
+  &:hover:not(:disabled) {
+    background: var(--button-#{$variant}-filled-bg-hover);
+  }
+}
+
+@mixin pressed-filled-button($variant, $token-state: pressed) {
+  &:active:not(:disabled) {
+    background: var(--button-#{$variant}-filled-bg-#{$token-state});
+  }
+}
+
+@mixin hover-outline-button($variant) {
+  &:hover:not(:disabled) {
+    background: var(--button-#{$variant}-outline-bg-hover);
+  }
+}
+
+@mixin pressed-outline-button($variant) {
+  &:active:not(:disabled) {
+    background: var(--button-#{$variant}-outline-bg-pressed);
+  }
+}
+
+@mixin hover-transparent-button($variant) {
+  &:hover:not(:disabled) {
+    color: var(--button-#{$variant}-transparent-text-hover);
+
+    .tdx-button__icon,
+    .tdx-button__loading {
+      color: var(--button-#{$variant}-transparent-icon-hover);
+    }
+  }
+}
+
+@mixin pressed-transparent-button($variant) {
+  &:active:not(:disabled) {
+    color: var(--button-#{$variant}-transparent-text-pressed);
+
+    .tdx-button__icon,
+    .tdx-button__loading {
+      color: var(--button-#{$variant}-transparent-icon-pressed);
+    }
+  }
+}
+
+@mixin warning-hover-text($emphasis) {
+  &:hover:not(:disabled) {
+    color: var(--button-warning-#{$emphasis}-text-hover);
+
+    .tdx-button__icon,
+    .tdx-button__loading {
+      color: var(--button-warning-#{$emphasis}-icon-hover);
+    }
+  }
+}
+
+@mixin warning-filled-hover-text {
+  &:hover:not(:disabled) {
+    color: var(--button-warning-filled-text-hover);
+  }
+}
+
+.tdx-button {
+  align-items: center;
+  appearance: none;
+  border: var(--border-width-xs-1) solid transparent;
+  border-radius: var(--radius-round);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--typography-font-family-paragraph);
+  font-weight: 700;
+  gap: var(--button-icon-gap-xs);
+  height: var(--button-height);
+  justify-content: center;
+  min-height: 0;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  position: relative;
+  text-align: center;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease;
+  user-select: none;
+  white-space: nowrap;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 var(--border-width-xs-2) var(--button-focus-ring);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: var(--button-disabled-opacity);
+  }
+}
+
+.tdx-button__label {
+  display: inline-flex;
+}
+
+.tdx-button__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: var(--button-icon-size);
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  height: var(--button-icon-size);
+  line-height: 1;
+  place-content: center;
+  width: var(--button-icon-size);
+}
+
+.tdx-button__loading {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: var(--button-icon-gap-xs);
+  justify-content: center;
+  min-width: calc(var(--button-icon-gap-xs) * 5);
+}
+
+.tdx-button__loading-dot {
+  animation: tdx-button-loading-dot 900ms ease-in-out infinite;
+  background: currentColor;
+  border-radius: var(--radius-round);
+  height: var(--button-icon-gap-xs);
+  width: var(--button-icon-gap-xs);
+}
+
+.tdx-button__loading-dot:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.tdx-button__loading-dot:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+.tdx-button--loading {
+  pointer-events: none;
+}
+
+.tdx-button--icon-only {
+  aspect-ratio: 1;
+  padding-inline: var(--button-padding-y);
+}
+
+.tdx-button--small {
+  --button-font-size: var(--paragraph-sm-text-size);
+  --button-height: 32px;
+  --button-icon-size: 16px;
+  --button-line-height: var(--paragraph-sm-line-height);
+  --button-padding-x: var(--button-padding-x-sm);
+  --button-padding-y: var(--button-padding-y-sm);
+
+  font-size: var(--button-font-size);
+  line-height: var(--button-line-height);
+}
+
+.tdx-button--medium {
+  --button-font-size: var(--paragraph-md-text-size);
+  --button-height: 40px;
+  --button-icon-size: 18px;
+  --button-line-height: var(--paragraph-md-line-height);
+  --button-padding-x: var(--button-padding-x-md);
+  --button-padding-y: var(--button-padding-y-md);
+
+  font-size: var(--button-font-size);
+  line-height: var(--button-line-height);
+}
+
+.tdx-button--large {
+  --button-font-size: var(--paragraph-lg-text-size);
+  --button-height: 52px;
+  --button-icon-size: 24px;
+  --button-line-height: var(--paragraph-lg-line-height);
+  --button-padding-x: var(--button-padding-x-lg);
+  --button-padding-y: var(--button-padding-y-lg);
+
+  font-size: var(--button-font-size);
+  line-height: var(--button-line-height);
+}
+
+.tdx-button--primary {
+  --button-focus-ring: var(--button-primary-focus-ring);
+}
+
+.tdx-button--secondary,
+.tdx-button--success,
+.tdx-button--danger,
+.tdx-button--warning,
+.tdx-button--discovery,
+.tdx-button--subtle {
+  --button-focus-ring: var(--button-secondary-focus-ring);
+}
+
+.tdx-button--primary.tdx-button--default {
+  @include filled-button('primary');
+  @include hover-filled-button('primary');
+  @include pressed-filled-button('primary');
+}
+
+.tdx-button--secondary.tdx-button--default {
+  @include filled-button('secondary');
+  @include hover-filled-button('secondary');
+  @include pressed-filled-button('secondary');
+}
+
+.tdx-button--success.tdx-button--default {
+  @include filled-button('success');
+  @include hover-filled-button('success');
+  @include pressed-filled-button('success', default);
+}
+
+.tdx-button--danger.tdx-button--default {
+  @include filled-button('danger');
+  @include hover-filled-button('danger');
+  @include pressed-filled-button('danger');
+}
+
+.tdx-button--warning.tdx-button--default {
+  @include filled-button('warning');
+  @include hover-filled-button('warning');
+  @include pressed-filled-button('warning');
+  @include warning-filled-hover-text;
+}
+
+.tdx-button--discovery.tdx-button--default {
+  @include filled-button('discovery');
+  @include hover-filled-button('discovery');
+  @include pressed-filled-button('discovery');
+}
+
+.tdx-button--subtle.tdx-button--default {
+  @include filled-button('subtle');
+  @include hover-filled-button('subtle');
+  @include pressed-filled-button('subtle');
+}
+
+.tdx-button--primary.tdx-button--outline {
+  @include outline-button('primary');
+  @include hover-outline-button('primary');
+  @include pressed-outline-button('primary');
+}
+
+.tdx-button--secondary.tdx-button--outline {
+  @include outline-button('secondary');
+  @include hover-outline-button('secondary');
+  @include pressed-outline-button('secondary');
+}
+
+.tdx-button--success.tdx-button--outline {
+  @include outline-button('success');
+  @include hover-outline-button('success');
+  @include pressed-outline-button('success');
+}
+
+.tdx-button--danger.tdx-button--outline {
+  @include outline-button('danger');
+  @include hover-outline-button('danger');
+  @include pressed-outline-button('danger');
+}
+
+.tdx-button--warning.tdx-button--outline {
+  @include outline-button('warning');
+  @include hover-outline-button('warning');
+  @include pressed-outline-button('warning');
+  @include warning-hover-text('outline');
+}
+
+.tdx-button--discovery.tdx-button--outline {
+  @include outline-button('discovery');
+  @include hover-outline-button('discovery');
+  @include pressed-outline-button('discovery');
+}
+
+.tdx-button--primary.tdx-button--transparent {
+  @include transparent-button('primary');
+  @include hover-transparent-button('primary');
+  @include pressed-transparent-button('primary');
+}
+
+.tdx-button--secondary.tdx-button--transparent {
+  @include transparent-button('secondary');
+  @include hover-transparent-button('secondary');
+  @include pressed-transparent-button('secondary');
+}
+
+.tdx-button--success.tdx-button--transparent {
+  @include transparent-button('success');
+  @include hover-transparent-button('success');
+  @include pressed-transparent-button('success');
+}
+
+.tdx-button--danger.tdx-button--transparent {
+  @include transparent-button('danger');
+  @include hover-transparent-button('danger');
+  @include pressed-transparent-button('danger');
+}
+
+.tdx-button--warning.tdx-button--transparent {
+  @include transparent-button('warning');
+  @include hover-transparent-button('warning');
+  @include pressed-transparent-button('warning');
+}
+
+.tdx-button--discovery.tdx-button--transparent {
+  @include transparent-button('discovery');
+  @include hover-transparent-button('discovery');
+  @include pressed-transparent-button('discovery');
+}
+
+@keyframes tdx-button-loading-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}

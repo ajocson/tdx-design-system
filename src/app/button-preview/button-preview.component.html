@@ -1,0 +1,102 @@
+<main class="tdx-button-preview">
+  <section class="tdx-button-preview__theme tdx-theme-light" data-theme="light">
+    <header class="tdx-button-preview__header">
+      <h1>Button Playground</h1>
+      <p>Light mode</p>
+    </header>
+
+    <ng-container *ngTemplateOutlet="matrix"></ng-container>
+  </section>
+
+  <section class="tdx-button-preview__theme tdx-theme-dark" data-theme="dark">
+    <header class="tdx-button-preview__header">
+      <h1>Button Playground</h1>
+      <p>Dark mode</p>
+    </header>
+
+    <ng-container *ngTemplateOutlet="matrix"></ng-container>
+  </section>
+
+  <ng-template #matrix>
+    <section class="tdx-button-preview__section">
+      <h2>Variants and emphasis</h2>
+
+      <div class="tdx-button-preview__matrix">
+        <div class="tdx-button-preview__row" *ngFor="let row of buttonRows">
+          <div class="tdx-button-preview__row-title">{{ row.variant }}</div>
+
+          <app-button
+            *ngFor="let emphasis of row.emphasis"
+            [label]="emphasis"
+            [variant]="row.variant"
+            [emphasis]="emphasis"
+            [size]="TdxButtonSize.Large"
+            leftIcon="arrow_back"
+            rightIcon="arrow_forward"
+            (clicked)="onPreviewClick(row.variant, emphasis)"
+          ></app-button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tdx-button-preview__section">
+      <h2>Sizes</h2>
+
+      <div class="tdx-button-preview__inline">
+        <app-button
+          *ngFor="let size of sizes"
+          [label]="size"
+          [variant]="TdxButtonVariant.Primary"
+          [emphasis]="TdxButtonEmphasis.DEFAULT"
+          [size]="size"
+          leftIcon="arrow_back"
+          rightIcon="arrow_forward"
+        ></app-button>
+      </div>
+    </section>
+
+    <section class="tdx-button-preview__section">
+      <h2>Disabled states</h2>
+
+      <div class="tdx-button-preview__matrix">
+        <div class="tdx-button-preview__row" *ngFor="let row of buttonRows">
+          <div class="tdx-button-preview__row-title">{{ row.variant }}</div>
+
+          <app-button
+            *ngFor="let emphasis of row.emphasis"
+            [label]="emphasis"
+            [variant]="row.variant"
+            [emphasis]="emphasis"
+            [disabled]="true"
+            leftIcon="lock"
+          ></app-button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tdx-button-preview__section">
+      <h2>Loading states</h2>
+
+      <div class="tdx-button-preview__inline">
+        <app-button
+          *ngFor="let variant of loadingVariants"
+          label="Loading"
+          [variant]="variant"
+          [emphasis]="TdxButtonEmphasis.DEFAULT"
+          [loading]="true"
+        ></app-button>
+      </div>
+    </section>
+
+    <section class="tdx-button-preview__section">
+      <h2>Icon variations</h2>
+
+      <div class="tdx-button-preview__inline">
+        <app-button label="Left icon" leftIcon="arrow_back"></app-button>
+        <app-button label="Right icon" rightIcon="arrow_forward"></app-button>
+        <app-button label="Both icons" leftIcon="arrow_back" rightIcon="arrow_forward"></app-button>
+        <app-button [label]="''" leftIcon="search"></app-button>
+      </div>
+    </section>
+  </ng-template>
+</main>
