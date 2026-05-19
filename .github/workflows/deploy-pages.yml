@@ -35,6 +35,14 @@ jobs:
       - name: Build GitHub Pages artifact
         run: npm run build:github-pages
 
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Copy Storybook into GitHub Pages artifact
+        run: |
+          mkdir -p dist/tdx-angular-button-preview/browser/storybook
+          cp -r storybook-static/* dist/tdx-angular-button-preview/browser/storybook/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
