@@ -7,7 +7,9 @@
     "start": "ng serve --host 127.0.0.1 --port 4200",
     "build": "ng build",
     "build:github-pages": "ng build --configuration production --base-href=/tdx-design-system/ && cp dist/tdx-angular-button-preview/browser/index.html dist/tdx-angular-button-preview/browser/404.html && touch dist/tdx-angular-button-preview/browser/.nojekyll",
-    "test": "ng test"
+    "test": "ng test",
+    "storybook": "ng run tdx-angular-button-preview:storybook",
+    "build-storybook": "ng run tdx-angular-button-preview:build-storybook"
   },
   "dependencies": {
     "@angular/animations": "^21.0.0",
@@ -33,6 +35,13 @@
     "karma-coverage": "^2.2.1",
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
-    "typescript": "~5.9.3"
+    "typescript": "~5.9.3",
+    "storybook": "^10.4.0",
+    "@storybook/angular": "^10.4.0",
+    "@storybook/addon-a11y": "^10.4.0",
+    "@storybook/addon-docs": "^10.4.0",
+    "@storybook/addon-onboarding": "^10.4.0",
+    "@angular-devkit/architect": "^0.2100.0",
+    "@angular-devkit/core": "^21.0.0"
   }
 }
