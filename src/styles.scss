@@ -11,6 +11,9 @@
   --paragraph-md-line-height: 24px;
   --paragraph-sm-text-size: 14px;
   --paragraph-sm-line-height: 20px;
+  --button-icon-size-lg: 24px;
+  --button-icon-size-md: 18px;
+  --button-icon-size-sm: 16px;
   --button-icon-gap-xs: 4px;
   --button-padding-x-lg: 20px;
   --button-padding-y-lg: 12px;
@@ -42,7 +45,7 @@
   --button-primary-filled-bg-pressed: #30145c;
   --button-primary-outline-icon: #3a1971;
   --button-primary-outline-text: #3a1971;
-  --button-primary-outline-border: #3a1971;
+  --button-primary-outline-border: #9fa9b9;
   --button-primary-outline-bg-hover: #eee6fa;
   --button-primary-outline-bg-pressed: #d3c0f1;
   --button-primary-transparent-icon-default: #3a1971;
@@ -73,7 +76,7 @@
   --button-success-filled-text: #f9fafb;
   --button-success-filled-bg-default: #529219;
   --button-success-filled-bg-hover: #448214;
-  --button-success-filled-bg-default: #529219;
+  --button-success-filled-bg-pressed: #35660e;
   --button-success-outline-icon: #448214;
   --button-success-outline-text: #448214;
   --button-success-outline-border: #529219;
@@ -92,16 +95,16 @@
   --button-danger-filled-bg-hover: #b30e2f;
   --button-danger-filled-bg-pressed: #8e0d28;
   --button-danger-outline-icon: #d00132;
-  --button-danger-outline-text: #d00132;
-  --button-danger-outline-border: #d00132;
+  --button-danger-outline-text: #db3e5d;
+  --button-danger-outline-border: #db3e5d;
   --button-danger-outline-bg-hover: #fce1e6;
   --button-danger-outline-bg-pressed: #f8c6cf;
   --button-danger-transparent-icon-default: #d00132;
-  --button-danger-transparent-text-default: #d00132;
+  --button-danger-transparent-text-default: #db3e5d;
   --button-danger-transparent-icon-hover: #b30e2f;
   --button-danger-transparent-text-hover: #b30e2f;
   --button-danger-transparent-icon-pressed: #d00132;
-  --button-danger-transparent-text-pressed: #d00132;
+  --button-danger-transparent-text-pressed: #db3e5d;
 
   --button-warning-filled-icon: #ffffff;
   --button-warning-filled-text: #ffffff;
@@ -118,8 +121,10 @@
   --button-warning-outline-bg-pressed: #fdebd0;
   --button-warning-transparent-icon-default: #f99f1b;
   --button-warning-transparent-text-default: #f99f1b;
+  --button-warning-transparent-bg-hover: #fef5e6;
   --button-warning-transparent-icon-hover: #b37112;
   --button-warning-transparent-text-hover: #b37112;
+  --button-warning-transparent-bg-pressed: #fdebd0;
   --button-warning-transparent-icon-pressed: #f99f1b;
   --button-warning-transparent-text-pressed: #f99f1b;
 

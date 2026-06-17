@@ -81,6 +81,18 @@
   }
 }
 
+@mixin hover-transparent-bg-button($variant) {
+  &:hover:not(:disabled) {
+    background: var(--button-#{$variant}-transparent-bg-hover);
+  }
+}
+
+@mixin pressed-transparent-bg-button($variant) {
+  &:active:not(:disabled) {
+    background: var(--button-#{$variant}-transparent-bg-pressed);
+  }
+}
+
 @mixin warning-hover-text($emphasis) {
   &:hover:not(:disabled) {
     color: var(--button-warning-#{$emphasis}-text-hover);
@@ -192,7 +204,7 @@
 .tdx-button--small {
   --button-font-size: var(--paragraph-sm-text-size);
   --button-height: 32px;
-  --button-icon-size: 16px;
+  --button-icon-size: var(--button-icon-size-sm);
   --button-line-height: var(--paragraph-sm-line-height);
   --button-padding-x: var(--button-padding-x-sm);
   --button-padding-y: var(--button-padding-y-sm);
@@ -204,7 +216,7 @@
 .tdx-button--medium {
   --button-font-size: var(--paragraph-md-text-size);
   --button-height: 40px;
-  --button-icon-size: 18px;
+  --button-icon-size: var(--button-icon-size-md);
   --button-line-height: var(--paragraph-md-line-height);
   --button-padding-x: var(--button-padding-x-md);
   --button-padding-y: var(--button-padding-y-md);
@@ -216,7 +228,7 @@
 .tdx-button--large {
   --button-font-size: var(--paragraph-lg-text-size);
   --button-height: 52px;
-  --button-icon-size: 24px;
+  --button-icon-size: var(--button-icon-size-lg);
   --button-line-height: var(--paragraph-lg-line-height);
   --button-padding-x: var(--button-padding-x-lg);
   --button-padding-y: var(--button-padding-y-lg);
@@ -253,7 +265,7 @@
 .tdx-button--success.tdx-button--default {
   @include filled-button('success');
   @include hover-filled-button('success');
-  @include pressed-filled-button('success', default);
+  @include pressed-filled-button('success');
 }
 
 .tdx-button--danger.tdx-button--default {
@@ -345,7 +357,9 @@
 .tdx-button--warning.tdx-button--transparent {
   @include transparent-button('warning');
   @include hover-transparent-button('warning');
+  @include hover-transparent-bg-button('warning');
   @include pressed-transparent-button('warning');
+  @include pressed-transparent-bg-button('warning');
 }
 
 .tdx-button--discovery.tdx-button--transparent {

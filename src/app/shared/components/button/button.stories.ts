@@ -219,16 +219,3 @@ export const Loading: Story = {
     rightIcon: '',
   },
 };
-
-export const Disabled: Story = {
-  args: {
-    label: 'Disabled Button',
-    variant: TdxButtonVariant.Primary,
-    emphasis: TdxButtonEmphasis.DEFAULT,
-    size: TdxButtonSize.Medium,
-    disabled: true,
-    loading: false,
-    leftIcon: '',
-    rightIcon: '',
-  },
-};
