@@ -16,8 +16,12 @@ export class ButtonComponent {
   @Input() size: TdxButtonSize = TdxButtonSize.Medium;
   @Input() disabled = false;
   @Input() loading = false;
-  @Input() leftIcon: TdxButtonIcon;
-  @Input() rightIcon: TdxButtonIcon;
+  @Input() leftIcon: TdxButtonIcon = null;
+  @Input() rightIcon: TdxButtonIcon = null;
+  @Input() ariaLabel?: string;
+  @Input() ariaExpanded?: boolean;
+  @Input() ariaControls?: string;
+  @Input() ariaPressed?: boolean;
 
   @Output() clicked = new EventEmitter<MouseEvent>();
 
@@ -53,10 +57,6 @@ export class ButtonComponent {
     }
 
     return this.emphasis;
-  }
-
-  get resolvedAppearance(): TdxButtonEmphasis {
-    return this.resolvedEmphasis;
   }
 
   get buttonClasses(): Record<string, boolean> {

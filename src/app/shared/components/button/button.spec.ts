@@ -125,4 +125,19 @@ describe('ButtonComponent', () => {
     expect(icons[0].nativeElement.textContent).toContain('arrow_back');
     expect(icons[1].nativeElement.textContent).toContain('arrow_forward');
   });
+
+  it('forwards accessibility inputs to the native button', () => {
+    fixture.componentRef.setInput('ariaLabel', 'Open menu');
+    fixture.componentRef.setInput('ariaExpanded', true);
+    fixture.componentRef.setInput('ariaControls', 'menu-panel');
+    fixture.componentRef.setInput('ariaPressed', false);
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(By.css('button')).nativeElement as HTMLButtonElement;
+
+    expect(button.getAttribute('aria-label')).toBe('Open menu');
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+    expect(button.getAttribute('aria-controls')).toBe('menu-panel');
+    expect(button.getAttribute('aria-pressed')).toBe('false');
+  });
 });

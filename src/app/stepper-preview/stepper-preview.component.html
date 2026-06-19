@@ -1,0 +1,66 @@
+<main class="tdx-stepper-preview">
+  <section class="tdx-stepper-preview__theme" data-theme="light">
+    <header class="tdx-stepper-preview__header">
+      <h1>Stepper Playground</h1>
+      <p>Light mode</p>
+    </header>
+
+    <ng-container *ngTemplateOutlet="previewContent"></ng-container>
+  </section>
+
+  <section class="tdx-stepper-preview__theme tdx-stepper-preview__theme--dark" data-theme="dark">
+    <header class="tdx-stepper-preview__header">
+      <h1>Stepper Playground</h1>
+      <p>Dark mode</p>
+    </header>
+
+    <ng-container *ngTemplateOutlet="previewContent"></ng-container>
+  </section>
+
+  <ng-template #previewContent>
+    <div class="tdx-stepper-preview__examples">
+      <section class="tdx-stepper-preview__section">
+        <h2>Vertical stepper</h2>
+        <tdx-stepper
+          [steps]="verticalSteps"
+          [currentIndex]="currentIndex"
+          [clickableSteps]="true"
+          (currentIndexChange)="currentIndex = $event"
+        ></tdx-stepper>
+      </section>
+
+      <section class="tdx-stepper-preview__section">
+        <h2>Horizontal stepper</h2>
+        <div class="tdx-stepper-preview__horizontal-figma">
+          <tdx-stepper
+            [steps]="horizontalSteps"
+            [orientation]="StepperOrientation.horizontal"
+            [currentIndex]="currentIndex"
+          ></tdx-stepper>
+        </div>
+      </section>
+    </div>
+
+    <div class="tdx-stepper-preview__controls" aria-label="Stepper navigation">
+      <app-button
+        [label]="''"
+        [variant]="TdxButtonVariant.Subtle"
+        [size]="TdxButtonSize.Small"
+        leftIcon="arrow_back"
+        [ariaLabel]="'Back'"
+        [disabled]="!canGoBack"
+        (clicked)="goBack()"
+      ></app-button>
+
+      <app-button
+        [label]="''"
+        [variant]="TdxButtonVariant.Subtle"
+        [size]="TdxButtonSize.Small"
+        leftIcon="arrow_forward"
+        [ariaLabel]="'Next'"
+        [disabled]="!canGoNext"
+        (clicked)="goNext()"
+      ></app-button>
+    </div>
+  </ng-template>
+</main>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap');
 
 :root {
   --typography-font-family-heading: Montserrat;
@@ -11,17 +11,47 @@
   --paragraph-md-line-height: 24px;
   --paragraph-sm-text-size: 14px;
   --paragraph-sm-line-height: 20px;
-  --button-icon-size-lg: 24px;
-  --button-icon-size-md: 18px;
-  --button-icon-size-sm: 16px;
-  --button-icon-gap-xs: 4px;
+  --caption-sm-text-size: 10px;
+  --caption-sm-line-height: 14px;
+  --icon-xl: 16px;
+  --icon-2xl: 20px;
+  --icon-3xl: 24px;
+  --button-font-weight: 700;
+  --button-letter-spacing: 0;
+  --button-height-lg: 52px;
+  --button-height-md: 40px;
+  --button-height-sm: 32px;
+  --button-icon-size-lg: var(--icon-3xl);
+  --button-icon-size-md: var(--icon-2xl);
+  --button-icon-size-sm: var(--icon-xl);
+  --button-icon-gap-lg: 12px;
+  --button-icon-gap-md: 8px;
+  --button-icon-gap-sm: 6px;
   --button-padding-x-lg: 20px;
   --button-padding-y-lg: 12px;
   --button-padding-x-md: 16px;
   --button-padding-y-md: 8px;
   --button-padding-x-sm: 12px;
   --button-padding-y-sm: 6px;
+  --space-none: 0;
+  --space-3xs: 1px;
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 6px;
+  --space-md: 8px;
+  --space-lg: 12px;
+  --space-xl: 16px;
+  --space-2xl: 20px;
+  --space-3xl: 24px;
+  --space-4xl: 32px;
+  --space-5xl: 40px;
+  --space-6xl: 48px;
+  --space-7xl: 64px;
+  --space-8xl: 80px;
+  --space-9xl: 128px;
+  --space-10xl: 256px;
   --radius-round: 9999px;
+  --radius-md: 8px;
   --radius-lg: 12px;
   --border-width-xs-1: 1px;
   --border-width-xs-2: 2px;
@@ -31,6 +61,7 @@
 
   --surface-page: #f2f4f7;
   --surface-default: #ffffff;
+  --alias-surface-default: var(--surface-default);
   --icon-brand-default: #3a1971;
   --background-brand-subtle-brand: #eee6fa;
   --text-neutral-primary: #364154;
@@ -150,6 +181,213 @@
   --button-subtle-filled-bg-default: #f2f4f7;
   --button-subtle-filled-bg-hover: #e6eaf0;
   --button-subtle-filled-bg-pressed: #c7ced9;
+
+  /* Proposed component tokens for Stepper mapped to existing semantic tokens. */
+  --stepper-gap: var(--space-3xl);
+  --stepper-vertical-label-gap: var(--space-sm);
+  --stepper-horizontal-label-gap: var(--space-xs);
+  --stepper-horizontal-label-max-width: 140px;
+  --stepper-horizontal-label-padding: var(--space-lg);
+  --stepper-indicator-size: 20px;
+  --stepper-icon-size: var(--icon-2xl);
+  --stepper-completed-check-size: var(--button-icon-size-sm);
+  --stepper-current-halo-size: var(--icon-3xl);
+  --stepper-connector-thickness: var(--border-width-xs-2);
+  --stepper-horizontal-connector-gap: calc(var(--space-xs) * 0.77);
+  --stepper-vertical-connector-gap: calc(var(--space-xs) * 0.77);
+  --stepper-vertical-connector-space: 18px;
+  --stepper-vertical-connector-height: calc(
+    var(--stepper-vertical-connector-space) - (var(--stepper-vertical-connector-gap) * 2)
+  );
+  --stepper-vertical-item-min-height: 38px;
+  --stepper-horizontal-item-min-width: 80px;
+  --stepper-horizontal-preview-width: 401px;
+  --stepper-focus-ring: var(--button-primary-focus-ring);
+  --stepper-complete-pop-duration: 220ms;
+  --stepper-complete-pop-timing: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --stepper-indicator-opacity-current: 30%;
+  --stepper-opacity-disabled: 40%;
+  --stepper-indicator-bg-completed: #448214;
+  --stepper-indicator-bg-current: transparent;
+  --stepper-indicator-bg-upcoming: transparent;
+  --stepper-indicator-bg-incomplete: transparent;
+  --stepper-indicator-bg-disabled: transparent;
+  --stepper-indicator-border-completed: transparent;
+  --stepper-indicator-border-current: transparent;
+  --stepper-indicator-border-upcoming: transparent;
+  --stepper-indicator-border-incomplete: transparent;
+  --stepper-indicator-border-disabled: transparent;
+  --stepper-indicator-text-completed: #ffffff;
+  --stepper-indicator-text-current: #a82675;
+  --stepper-indicator-text-upcoming: #7e889c;
+  --stepper-indicator-text-incomplete: #f99f1b;
+  --stepper-indicator-text-disabled: #7e889c;
+  --stepper-indicator-number-text: var(--text-neutral-inverse);
+  --stepper-label-text-completed: #364154;
+  --stepper-label-text-current: #364154;
+  --stepper-label-text-upcoming: #364154;
+  --stepper-label-text-incomplete: #364154;
+  --stepper-label-text-disabled: #364154;
+  --stepper-connector-bg-default: #e6eaf0;
+  --stepper-connector-bg-disabled: #e6eaf0;
+}
+
+[data-theme='dark'] {
+  --surface-page: #111827;
+  --surface-default: #2f2f2f;
+  --alias-surface-default: var(--surface-default);
+  --icon-brand-default: #d3c0f1;
+  --background-brand-subtle-brand: #3a1971;
+  --text-neutral-primary: #f9fafb;
+  --text-neutral-secondary: #c7ced9;
+  --text-neutral-inverse: #111827;
+  --border-neutral-default-secondary: #5f6a81;
+  --button-primary-focus-ring: #aa86e4;
+  --button-secondary-focus-ring: #aa86e4;
+  --button-primary-filled-icon: #f9fafb;
+  --button-primary-filled-text: #f9fafb;
+  --button-primary-filled-bg-default: #4a208f;
+  --button-primary-filled-bg-hover: #5b27af;
+  --button-primary-filled-bg-pressed: #3a1971;
+  --button-primary-outline-icon: #aa86e4;
+  --button-primary-outline-text: #aa86e4;
+  --button-primary-outline-border: #9fa9b9;
+  --button-primary-outline-bg-hover: #3a1971;
+  --button-primary-outline-bg-pressed: #30145c;
+  --button-primary-transparent-icon-default: #aa86e4;
+  --button-primary-transparent-text-default: #aa86e4;
+  --button-primary-transparent-icon-hover: #7a4fcc;
+  --button-primary-transparent-text-hover: #7a4fcc;
+  --button-primary-transparent-icon-pressed: #aa86e4;
+  --button-primary-transparent-text-pressed: #aa86e4;
+
+  --button-secondary-filled-icon: #f9fafb;
+  --button-secondary-filled-text: #f9fafb;
+  --button-secondary-filled-bg-default: #8c1f61;
+  --button-secondary-filled-bg-hover: #6f184d;
+  --button-secondary-filled-bg-pressed: #521238;
+  --button-secondary-outline-icon: #c13c92;
+  --button-secondary-outline-text: #c13c92;
+  --button-secondary-outline-border: #b02d82;
+  --button-secondary-outline-bg-hover: #6f184d;
+  --button-secondary-outline-bg-pressed: #521238;
+  --button-secondary-transparent-icon-default: #c13c92;
+  --button-secondary-transparent-text-default: #c13c92;
+  --button-secondary-transparent-icon-hover: #b02d82;
+  --button-secondary-transparent-text-hover: #b02d82;
+  --button-secondary-transparent-icon-pressed: #c13c92;
+  --button-secondary-transparent-text-pressed: #c13c92;
+
+  --button-success-filled-icon: #f9fafb;
+  --button-success-filled-text: #f9fafb;
+  --button-success-filled-bg-default: #448214;
+  --button-success-filled-bg-hover: #35660e;
+  --button-success-filled-bg-pressed: #284d0a;
+  --button-success-outline-icon: #529219;
+  --button-success-outline-text: #529219;
+  --button-success-outline-border: #74ad3f;
+  --button-success-outline-bg-hover: #284d0a;
+  --button-success-outline-bg-pressed: #35660e;
+  --button-success-transparent-icon-default: #529219;
+  --button-success-transparent-text-default: #529219;
+  --button-success-transparent-icon-hover: #448214;
+  --button-success-transparent-text-hover: #448214;
+  --button-success-transparent-icon-pressed: #529219;
+  --button-success-transparent-text-pressed: #529219;
+
+  --button-danger-filled-icon: #f9fafb;
+  --button-danger-filled-text: #f9fafb;
+  --button-danger-filled-bg-default: #d00132;
+  --button-danger-filled-bg-hover: #b30e2f;
+  --button-danger-filled-bg-pressed: #8e0d28;
+  --button-danger-outline-icon: #d00132;
+  --button-danger-outline-text: #d21f45;
+  --button-danger-outline-border: #d21f45;
+  --button-danger-outline-bg-hover: #6b0a1e;
+  --button-danger-outline-bg-pressed: #4a0614;
+  --button-danger-transparent-icon-default: #d00132;
+  --button-danger-transparent-text-default: #d21f45;
+  --button-danger-transparent-icon-hover: #b30e2f;
+  --button-danger-transparent-text-hover: #b30e2f;
+  --button-danger-transparent-icon-pressed: #d00132;
+  --button-danger-transparent-text-pressed: #d21f45;
+
+  --button-warning-filled-icon: #ffffff;
+  --button-warning-filled-text: #ffffff;
+  --button-warning-filled-text-hover: #ffffff;
+  --button-warning-filled-bg-default: #f2ac32;
+  --button-warning-filled-bg-hover: #f99f1b;
+  --button-warning-filled-bg-pressed: #d88916;
+  --button-warning-outline-icon: #d88916;
+  --button-warning-outline-text: #d88916;
+  --button-warning-outline-border: #f99f1b;
+  --button-warning-outline-icon-hover: #f99f1b;
+  --button-warning-outline-text-hover: #f99f1b;
+  --button-warning-outline-bg-hover: #674109;
+  --button-warning-outline-bg-pressed: #432a05;
+  --button-warning-transparent-icon-default: #d88916;
+  --button-warning-transparent-text-default: #d88916;
+  --button-warning-transparent-bg-hover: #674109;
+  --button-warning-transparent-icon-hover: #f99f1b;
+  --button-warning-transparent-text-hover: #f99f1b;
+  --button-warning-transparent-bg-pressed: #432a05;
+  --button-warning-transparent-icon-pressed: #d88916;
+  --button-warning-transparent-text-pressed: #d88916;
+
+  --button-discovery-filled-icon: #f9fafb;
+  --button-discovery-filled-text: #f9fafb;
+  --button-discovery-filled-bg-default: #1f8796;
+  --button-discovery-filled-bg-hover: #166672;
+  --button-discovery-filled-bg-pressed: #0e4a55;
+  --button-discovery-outline-icon: #1f8796;
+  --button-discovery-outline-text: #1f8796;
+  --button-discovery-outline-border: #2fa9bc;
+  --button-discovery-outline-bg-hover: #0e4a55;
+  --button-discovery-outline-bg-pressed: #08363e;
+  --button-discovery-transparent-icon-default: #1f8796;
+  --button-discovery-transparent-text-default: #1f8796;
+  --button-discovery-transparent-icon-hover: #2fa9bc;
+  --button-discovery-transparent-text-hover: #166672;
+  --button-discovery-transparent-icon-pressed: #1f8796;
+  --button-discovery-transparent-text-pressed: #1f8796;
+
+  --button-subtle-filled-icon: #f9fafb;
+  --button-subtle-filled-text: #f9fafb;
+  --button-subtle-filled-bg-default: #364154;
+  --button-subtle-filled-bg-hover: #2b3446;
+  --button-subtle-filled-bg-pressed: #21293a;
+  --stepper-indicator-bg-incomplete: #4d3310;
+  --stepper-indicator-bg-disabled: #364154;
+  --stepper-label-text-completed: var(--text-neutral-primary);
+  --stepper-label-text-current: var(--text-neutral-primary);
+  --stepper-label-text-upcoming: var(--text-neutral-primary);
+  --stepper-label-text-incomplete: var(--text-neutral-primary);
+  --stepper-label-text-disabled: var(--text-neutral-primary);
+  --stepper-connector-bg-default: #5f6a81;
+  --stepper-connector-bg-disabled: #5f6a81;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --paragraph-lg-text-size: 16px;
+    --paragraph-lg-line-height: 26px;
+    --paragraph-md-text-size: 14px;
+    --paragraph-md-line-height: 22px;
+    --paragraph-sm-text-size: 12px;
+    --paragraph-sm-line-height: 20px;
+    --icon-xl: 14px;
+    --icon-2xl: 18px;
+    --icon-3xl: 20px;
+    --button-icon-gap-lg: 10px;
+    --button-icon-gap-md: 8px;
+    --button-icon-gap-sm: 6px;
+    --button-padding-x-lg: 16px;
+    --button-padding-y-lg: 10px;
+    --button-padding-x-md: 12px;
+    --button-padding-y-md: 8px;
+    --button-padding-x-sm: 10px;
+    --button-padding-y-sm: 6px;
+  }
 }
 
 html {

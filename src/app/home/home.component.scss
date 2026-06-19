@@ -44,11 +44,17 @@ h1 {
   max-width: 560px;
 }
 
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+}
+
 .home-link {
   align-items: center;
-  background: var(--button-primary-default-bg, #1f6feb);
-  border-radius: var(--button-radius, 6px);
-  color: var(--button-primary-default-text, #ffffff);
+  background: var(--button-primary-filled-bg-default);
+  border-radius: var(--radius-round);
+  color: var(--button-primary-filled-text);
   display: inline-flex;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9375rem;

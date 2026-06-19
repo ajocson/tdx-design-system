@@ -13,21 +13,44 @@ import {
   TdxButtonVariant,
 } from './button.model';
 
+type ButtonStoryTheme = 'light' | 'dark';
+
 @Component({
   selector: 'tdx-button-story-host',
   standalone: false,
   template: `
-    <tdx-button
-      [label]="label"
-      [variant]="variant"
-      [emphasis]="emphasis"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [leftIcon]="leftIcon"
-      [rightIcon]="rightIcon">
-    </tdx-button>
+    <section class="tdx-button-story" [attr.data-theme]="theme">
+      <tdx-button
+        [label]="label"
+        [variant]="variant"
+        [emphasis]="emphasis"
+        [size]="size"
+        [disabled]="disabled"
+        [loading]="loading"
+        [leftIcon]="leftIcon"
+        [rightIcon]="rightIcon">
+      </tdx-button>
+    </section>
   `,
+  styles: [
+    `
+      .tdx-button-story {
+        align-items: flex-start;
+        background: var(--alias-surface-default);
+        color: var(--text-neutral-primary);
+        display: flex;
+        min-height: 160px;
+        padding: var(--space-6xl);
+      }
+
+      @media (max-width: 767px) {
+        .tdx-button-story {
+          min-height: 120px;
+          padding: var(--space-3xl);
+        }
+      }
+    `,
+  ],
 })
 class ButtonStoryHostComponent {
   @Input() label = 'Button';
@@ -48,6 +71,8 @@ class ButtonStoryHostComponent {
   @Input() leftIcon?: string;
 
   @Input() rightIcon?: string;
+
+  @Input() theme: ButtonStoryTheme = 'light';
 }
 
 const meta: Meta<ButtonStoryHostComponent> = {
@@ -96,6 +121,11 @@ const meta: Meta<ButtonStoryHostComponent> = {
     rightIcon: {
       control: 'text',
     },
+
+    theme: {
+      control: 'inline-radio',
+      options: ['light', 'dark'],
+    },
   },
 };
 
@@ -113,6 +143,7 @@ export const Playground: Story = {
     loading: false,
     leftIcon: 'add',
     rightIcon: '',
+    theme: 'light',
   },
 };
 
@@ -126,6 +157,7 @@ export const Primary: Story = {
     loading: false,
     leftIcon: '',
     rightIcon: '',
+    theme: 'light',
   },
 };
 
@@ -139,6 +171,7 @@ export const Secondary: Story = {
     loading: false,
     leftIcon: '',
     rightIcon: '',
+    theme: 'light',
   },
 };
 
@@ -152,6 +185,7 @@ export const Success: Story = {
     loading: false,
     leftIcon: '',
     rightIcon: '',
+    theme: 'light',
   },
 };
 
@@ -165,6 +199,7 @@ export const Danger: Story = {
     loading: false,
     leftIcon: '',
     rightIcon: '',
+    theme: 'light',
   },
 };
 
@@ -178,6 +213,7 @@ export const Warning: Story = {
     loading: false,
     leftIcon: '',
     rightIcon: '',
+    theme: 'light',
   },
 };
 
@@ -191,6 +227,7 @@ export const Discovery: Story = {
     loading: false,
     leftIcon: '',
     rightIcon: '',
+    theme: 'light',
   },
 };
 
@@ -204,6 +241,7 @@ export const Subtle: Story = {
     loading: false,
     leftIcon: '',
     rightIcon: '',
+    theme: 'light',
   },
 };
 
@@ -217,5 +255,6 @@ export const Loading: Story = {
     loading: true,
     leftIcon: '',
     rightIcon: '',
+    theme: 'light',
   },
 };

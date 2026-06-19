@@ -1,0 +1,89 @@
+<div class="tdx-stepper" [ngClass]="hostClasses">
+  <ol class="tdx-stepper__list">
+    <li
+      *ngFor="let step of steps; let index = index; let first = first; let last = last"
+      class="tdx-stepper__item"
+      [ngClass]="getStepClasses(step, index)"
+      [attr.data-state]="getStepVisualState(step, index)"
+    >
+      <span
+        class="tdx-stepper__connector tdx-stepper__connector--before"
+        [class.tdx-stepper__connector--hidden]="first"
+        aria-hidden="true"
+      ></span>
+
+      <button
+        *ngIf="clickableSteps; else staticStep"
+        type="button"
+        class="tdx-stepper__step"
+        [disabled]="isStepDisabled(step)"
+        [attr.aria-current]="getAriaCurrent(step, index)"
+        [attr.aria-disabled]="isStepDisabled(step)"
+        [attr.aria-label]="getStepAriaLabel(step, index)"
+        [attr.data-stepper-index]="index"
+        (click)="onStepClick(step, index)"
+        (keydown)="onStepKeydown($event, index)"
+      >
+        <ng-container *ngTemplateOutlet="stepContent; context: { step: step, index: index }"></ng-container>
+      </button>
+
+      <ng-template #staticStep>
+        <div
+          class="tdx-stepper__step"
+          [attr.aria-current]="getAriaCurrent(step, index)"
+          [attr.aria-disabled]="isStepDisabled(step)"
+        >
+          <ng-container *ngTemplateOutlet="stepContent; context: { step: step, index: index }"></ng-container>
+        </div>
+      </ng-template>
+
+      <span
+        class="tdx-stepper__connector tdx-stepper__connector--after"
+        [class.tdx-stepper__connector--hidden]="last"
+        aria-hidden="true"
+      ></span>
+    </li>
+  </ol>
+
+  <p *ngIf="steps.length > 0 && !minimumStepsMet" class="tdx-stepper__hint" role="status">
+    Add at least two steps to preview the complete stepper pattern.
+  </p>
+
+  <div *ngIf="showPreviewControls" class="tdx-stepper__controls">
+    <app-button
+      [label]="''"
+      [variant]="TdxButtonVariant.Subtle"
+      [size]="TdxButtonSize.Small"
+      leftIcon="arrow_back"
+      [ariaLabel]="backLabel"
+      [disabled]="!canGoBack"
+      (clicked)="goBack()"
+    ></app-button>
+
+    <app-button
+      [label]="''"
+      [variant]="TdxButtonVariant.Subtle"
+      [size]="TdxButtonSize.Small"
+      leftIcon="arrow_forward"
+      [ariaLabel]="nextLabel"
+      [disabled]="!canGoNext"
+      (clicked)="goNext()"
+    ></app-button>
+  </div>
+</div>
+
+<ng-template #stepContent let-step="step" let-index="index">
+  <span class="tdx-stepper__indicator" aria-hidden="true">
+    <span class="tdx-stepper__icon material-symbols-rounded">
+      {{ getIndicatorIcon(step, index) }}
+    </span>
+
+    <ng-container *ngIf="shouldShowStepNumber(step, index)">
+      <span class="tdx-stepper__number">{{ getStepNumber(step, index) }}</span>
+    </ng-container>
+  </span>
+
+  <span class="tdx-stepper__label">
+    {{ step.label }}
+  </span>
+</ng-template>

@@ -31,10 +31,6 @@ export class ButtonPreviewComponent {
   readonly TdxButtonSize = TdxButtonSize;
   readonly TdxButtonVariant = TdxButtonVariant;
 
-  onPreviewClick(variant: TdxButtonVariant, emphasis: TdxButtonEmphasis): void {
-    console.info(`[tdx-button-preview] ${variant}/${emphasis} clicked`);
-  }
-
   private getSupportedEmphasis(variant: TdxButtonVariant): readonly TdxButtonEmphasis[] {
     if (variant === TdxButtonVariant.Subtle) {
       return [TdxButtonEmphasis.DEFAULT];

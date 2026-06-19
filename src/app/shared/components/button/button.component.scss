@@ -81,18 +81,6 @@
   }
 }
 
-@mixin hover-transparent-bg-button($variant) {
-  &:hover:not(:disabled) {
-    background: var(--button-#{$variant}-transparent-bg-hover);
-  }
-}
-
-@mixin pressed-transparent-bg-button($variant) {
-  &:active:not(:disabled) {
-    background: var(--button-#{$variant}-transparent-bg-pressed);
-  }
-}
-
 @mixin warning-hover-text($emphasis) {
   &:hover:not(:disabled) {
     color: var(--button-warning-#{$emphasis}-text-hover);
@@ -119,10 +107,11 @@
   cursor: pointer;
   display: inline-flex;
   font-family: var(--typography-font-family-paragraph);
-  font-weight: 700;
-  gap: var(--button-icon-gap-xs);
+  font-weight: var(--button-font-weight);
+  gap: var(--button-icon-gap);
   height: var(--button-height);
   justify-content: center;
+  letter-spacing: var(--button-letter-spacing);
   min-height: 0;
   padding: var(--button-padding-y) var(--button-padding-x);
   position: relative;
@@ -171,17 +160,17 @@
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  gap: var(--button-icon-gap-xs);
+  gap: var(--space-xs);
   justify-content: center;
-  min-width: calc(var(--button-icon-gap-xs) * 5);
+  min-width: calc(var(--space-xs) * 5);
 }
 
 .tdx-button__loading-dot {
   animation: tdx-button-loading-dot 900ms ease-in-out infinite;
   background: currentColor;
   border-radius: var(--radius-round);
-  height: var(--button-icon-gap-xs);
-  width: var(--button-icon-gap-xs);
+  height: var(--space-xs);
+  width: var(--space-xs);
 }
 
 .tdx-button__loading-dot:nth-child(2) {
@@ -203,7 +192,8 @@
 
 .tdx-button--small {
   --button-font-size: var(--paragraph-sm-text-size);
-  --button-height: 32px;
+  --button-height: var(--button-height-sm);
+  --button-icon-gap: var(--button-icon-gap-sm);
   --button-icon-size: var(--button-icon-size-sm);
   --button-line-height: var(--paragraph-sm-line-height);
   --button-padding-x: var(--button-padding-x-sm);
@@ -215,7 +205,8 @@
 
 .tdx-button--medium {
   --button-font-size: var(--paragraph-md-text-size);
-  --button-height: 40px;
+  --button-height: var(--button-height-md);
+  --button-icon-gap: var(--button-icon-gap-md);
   --button-icon-size: var(--button-icon-size-md);
   --button-line-height: var(--paragraph-md-line-height);
   --button-padding-x: var(--button-padding-x-md);
@@ -227,7 +218,8 @@
 
 .tdx-button--large {
   --button-font-size: var(--paragraph-lg-text-size);
-  --button-height: 52px;
+  --button-height: var(--button-height-lg);
+  --button-icon-gap: var(--button-icon-gap-lg);
   --button-icon-size: var(--button-icon-size-lg);
   --button-line-height: var(--paragraph-lg-line-height);
   --button-padding-x: var(--button-padding-x-lg);
@@ -357,9 +349,7 @@
 .tdx-button--warning.tdx-button--transparent {
   @include transparent-button('warning');
   @include hover-transparent-button('warning');
-  @include hover-transparent-bg-button('warning');
   @include pressed-transparent-button('warning');
-  @include pressed-transparent-bg-button('warning');
 }
 
 .tdx-button--discovery.tdx-button--transparent {
