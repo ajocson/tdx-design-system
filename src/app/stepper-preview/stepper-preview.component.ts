@@ -29,15 +29,15 @@ export class StepperPreviewComponent {
   readonly TdxButtonVariant = TdxButtonVariant;
 
   get canGoBack(): boolean {
-    return this.findEnabledStepIndex(this.currentIndex - 1, -1) !== null;
+    return this.getAvailableStepIndex(this.currentIndex - 1) !== null;
   }
 
   get canGoNext(): boolean {
-    return this.findEnabledStepIndex(this.currentIndex + 1, 1) !== null;
+    return this.getAvailableStepIndex(this.currentIndex + 1) !== null;
   }
 
   goBack(): void {
-    const previousIndex = this.findEnabledStepIndex(this.currentIndex - 1, -1);
+    const previousIndex = this.getAvailableStepIndex(this.currentIndex - 1);
 
     if (previousIndex !== null) {
       this.currentIndex = previousIndex;
@@ -45,20 +45,15 @@ export class StepperPreviewComponent {
   }
 
   goNext(): void {
-    const nextIndex = this.findEnabledStepIndex(this.currentIndex + 1, 1);
+    const nextIndex = this.getAvailableStepIndex(this.currentIndex + 1);
 
     if (nextIndex !== null) {
       this.currentIndex = nextIndex;
     }
   }
 
-  private findEnabledStepIndex(startIndex: number, direction: 1 | -1): number | null {
-    for (let index = startIndex; index >= 0 && index < this.verticalSteps.length; index += direction) {
-      if (this.verticalSteps[index]?.state !== 'disabled') {
-        return index;
-      }
-    }
-
-    return null;
+  private getAvailableStepIndex(index: number): number | null {
+    const step = this.verticalSteps[index];
+    return step && step.state !== 'disabled' && step.state !== 'incomplete' ? index : null;
   }
 }

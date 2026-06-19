@@ -49,11 +49,11 @@ export class StepperComponent {
   }
 
   get canGoBack(): boolean {
-    return this.findEnabledStepIndex(this.resolvedCurrentIndex - 1, -1) !== null;
+    return this.getAvailableStepIndex(this.resolvedCurrentIndex - 1) !== null;
   }
 
   get canGoNext(): boolean {
-    return this.findEnabledStepIndex(this.resolvedCurrentIndex + 1, 1) !== null;
+    return this.getAvailableStepIndex(this.resolvedCurrentIndex + 1) !== null;
   }
 
   get hostClasses(): Record<string, boolean> {
@@ -70,12 +70,8 @@ export class StepperComponent {
   }
 
   getStepVisualState(step: StepperStep, index: number): StepperVisualState {
-    if (step.state === 'disabled') {
-      return 'disabled';
-    }
-
-    if (step.state === 'incomplete') {
-      return 'incomplete';
+    if (step.state) {
+      return step.state;
     }
 
     if (index < this.resolvedCurrentIndex) {
@@ -125,8 +121,12 @@ export class StepperComponent {
     return step.state === 'disabled';
   }
 
+  isStepBlocked(step: StepperStep): boolean {
+    return this.isStepDisabled(step) || step.state === 'incomplete';
+  }
+
   isStepClickable(step: StepperStep): boolean {
-    return this.clickableSteps && !this.isStepDisabled(step);
+    return this.clickableSteps && !this.isStepBlocked(step);
   }
 
   getAriaCurrent(step: StepperStep, index: number): 'step' | null {
@@ -162,7 +162,7 @@ export class StepperComponent {
   }
 
   goBack(): void {
-    const previousIndex = this.findEnabledStepIndex(this.resolvedCurrentIndex - 1, -1);
+    const previousIndex = this.getAvailableStepIndex(this.resolvedCurrentIndex - 1);
 
     if (previousIndex !== null) {
       this.setCurrentIndex(previousIndex);
@@ -170,7 +170,7 @@ export class StepperComponent {
   }
 
   goNext(): void {
-    const nextIndex = this.findEnabledStepIndex(this.resolvedCurrentIndex + 1, 1);
+    const nextIndex = this.getAvailableStepIndex(this.resolvedCurrentIndex + 1);
 
     if (nextIndex !== null) {
       this.setCurrentIndex(nextIndex);
@@ -181,7 +181,7 @@ export class StepperComponent {
     const nextIndex = Math.min(Math.max(index, 0), this.steps.length - 1);
     const nextStep = this.steps[nextIndex];
 
-    if (!nextStep || this.isStepDisabled(nextStep)) {
+    if (!nextStep || this.isStepBlocked(nextStep)) {
       return;
     }
 
@@ -192,32 +192,27 @@ export class StepperComponent {
 
   private getKeyboardTargetIndex(key: string, index: number): number | null {
     if (key === 'Home') {
-      return this.findEnabledStepIndex(0, 1);
+      return this.getAvailableStepIndex(0);
     }
 
     if (key === 'End') {
-      return this.findEnabledStepIndex(this.steps.length - 1, -1);
+      return this.getAvailableStepIndex(this.steps.length - 1);
     }
 
     if (key === 'ArrowRight' || key === 'ArrowDown') {
-      return this.findEnabledStepIndex(index + 1, 1);
+      return this.getAvailableStepIndex(index + 1);
     }
 
     if (key === 'ArrowLeft' || key === 'ArrowUp') {
-      return this.findEnabledStepIndex(index - 1, -1);
+      return this.getAvailableStepIndex(index - 1);
     }
 
     return null;
   }
 
-  private findEnabledStepIndex(startIndex: number, direction: 1 | -1): number | null {
-    for (let index = startIndex; index >= 0 && index < this.steps.length; index += direction) {
-      if (!this.isStepDisabled(this.steps[index])) {
-        return index;
-      }
-    }
-
-    return null;
+  private getAvailableStepIndex(index: number): number | null {
+    const step = this.steps[index];
+    return step && !this.isStepBlocked(step) ? index : null;
   }
 
   private focusStep(index: number): void {

@@ -1,0 +1,79 @@
+<main class="tdx-tag-preview">
+  <section class="tdx-tag-preview__theme" data-theme="light">
+    <header class="tdx-tag-preview__header">
+      <h1>Tag Playground</h1>
+      <p>Light mode</p>
+    </header>
+
+    <ng-container *ngTemplateOutlet="previewContent"></ng-container>
+  </section>
+
+  <section class="tdx-tag-preview__theme tdx-tag-preview__theme--dark" data-theme="dark">
+    <header class="tdx-tag-preview__header">
+      <h1>Tag Playground</h1>
+      <p>Dark mode</p>
+    </header>
+
+    <ng-container *ngTemplateOutlet="previewContent"></ng-container>
+  </section>
+
+  <ng-template #previewContent>
+    <section class="tdx-tag-preview__section">
+      <h2>Colors and states</h2>
+
+      <div class="tdx-tag-preview__matrix">
+        <div class="tdx-tag-preview__row tdx-tag-preview__row--headings">
+          <span>Color</span>
+          <span>Default</span>
+          <span>Hover</span>
+          <span>Pressed</span>
+          <span>Focus</span>
+          <span>Active</span>
+        </div>
+
+        <div class="tdx-tag-preview__row" *ngFor="let color of colors">
+          <span class="tdx-tag-preview__row-title">{{ color.label }}</span>
+
+          <app-tag
+            *ngFor="let state of color.states"
+            [class]="'tdx-tag-preview__tag--' + state"
+            label="Tag"
+            [variant]="color.variant"
+            [emphasis]="TdxTagEmphasis.Subtle"
+            leadingIcon="info"
+          ></app-tag>
+        </div>
+      </div>
+    </section>
+
+    <section class="tdx-tag-preview__section">
+      <h2>Removable tag</h2>
+
+      <div class="tdx-tag-preview__inline">
+        <app-tag
+          label="Tag"
+          [variant]="TdxTagVariant.Neutral"
+          [emphasis]="TdxTagEmphasis.Subtle"
+          leadingIcon="info"
+          [removable]="true"
+        ></app-tag>
+      </div>
+    </section>
+
+    <section class="tdx-tag-preview__section">
+      <h2>Disabled states</h2>
+
+      <div class="tdx-tag-preview__inline">
+        <app-tag
+          *ngFor="let color of colors"
+          label="Disabled"
+          [variant]="color.variant"
+          [emphasis]="TdxTagEmphasis.Subtle"
+          leadingIcon="info"
+          [removable]="color.variant === TdxTagVariant.Neutral"
+          [disabled]="true"
+        ></app-tag>
+      </div>
+    </section>
+  </ng-template>
+</main>

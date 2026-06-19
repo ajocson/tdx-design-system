@@ -16,9 +16,9 @@
         *ngIf="clickableSteps; else staticStep"
         type="button"
         class="tdx-stepper__step"
-        [disabled]="isStepDisabled(step)"
+        [disabled]="isStepBlocked(step)"
         [attr.aria-current]="getAriaCurrent(step, index)"
-        [attr.aria-disabled]="isStepDisabled(step)"
+        [attr.aria-disabled]="isStepBlocked(step)"
         [attr.aria-label]="getStepAriaLabel(step, index)"
         [attr.data-stepper-index]="index"
         (click)="onStepClick(step, index)"
@@ -31,7 +31,6 @@
         <div
           class="tdx-stepper__step"
           [attr.aria-current]="getAriaCurrent(step, index)"
-          [attr.aria-disabled]="isStepDisabled(step)"
         >
           <ng-container *ngTemplateOutlet="stepContent; context: { step: step, index: index }"></ng-container>
         </div>

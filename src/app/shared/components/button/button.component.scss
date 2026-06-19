@@ -108,7 +108,6 @@
   display: inline-flex;
   font-family: var(--typography-font-family-paragraph);
   font-weight: var(--button-font-weight);
-  gap: var(--button-icon-gap);
   height: var(--button-height);
   justify-content: center;
   letter-spacing: var(--button-letter-spacing);
@@ -143,6 +142,7 @@
 
 .tdx-button__label {
   display: inline-flex;
+  padding-inline: var(--button-label-padding-x);
 }
 
 .tdx-button__icon {
@@ -193,7 +193,6 @@
 .tdx-button--small {
   --button-font-size: var(--paragraph-sm-text-size);
   --button-height: var(--button-height-sm);
-  --button-icon-gap: var(--button-icon-gap-sm);
   --button-icon-size: var(--button-icon-size-sm);
   --button-line-height: var(--paragraph-sm-line-height);
   --button-padding-x: var(--button-padding-x-sm);
@@ -206,7 +205,6 @@
 .tdx-button--medium {
   --button-font-size: var(--paragraph-md-text-size);
   --button-height: var(--button-height-md);
-  --button-icon-gap: var(--button-icon-gap-md);
   --button-icon-size: var(--button-icon-size-md);
   --button-line-height: var(--paragraph-md-line-height);
   --button-padding-x: var(--button-padding-x-md);
@@ -219,7 +217,6 @@
 .tdx-button--large {
   --button-font-size: var(--paragraph-lg-text-size);
   --button-height: var(--button-height-lg);
-  --button-icon-gap: var(--button-icon-gap-lg);
   --button-icon-size: var(--button-icon-size-lg);
   --button-line-height: var(--paragraph-lg-line-height);
   --button-padding-x: var(--button-padding-x-lg);

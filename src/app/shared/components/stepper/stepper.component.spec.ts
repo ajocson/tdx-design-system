@@ -64,7 +64,23 @@ describe('StepperComponent', () => {
     expect(items[1].nativeElement.dataset['state']).toBe('incomplete');
     expect(items[1].nativeElement.textContent).toContain('warning');
     expect(items[2].nativeElement.dataset['state']).toBe('disabled');
-    expect(items[2].query(By.css('.tdx-stepper__step')).attributes['aria-disabled']).toBe('true');
+    expect(items[2].query(By.css('.tdx-stepper__step')).nativeElement.tagName.toLowerCase()).toBe('div');
+  });
+
+  it('renders configured visual states without deriving them from the current index', () => {
+    fixture.componentRef.setInput('steps', [
+      { label: 'Account', state: 'completed' },
+      { label: 'Profile', state: 'current' },
+      { label: 'Review', state: 'upcoming' },
+    ]);
+    fixture.componentRef.setInput('currentIndex', 0);
+    fixture.detectChanges();
+
+    const items = fixture.debugElement.queryAll(By.css('.tdx-stepper__item'));
+
+    expect(items[0].nativeElement.dataset['state']).toBe('completed');
+    expect(items[1].nativeElement.dataset['state']).toBe('current');
+    expect(items[2].nativeElement.dataset['state']).toBe('upcoming');
   });
 
   it('uses button semantics and emits changes when clickable steps are enabled', () => {
@@ -79,13 +95,18 @@ describe('StepperComponent', () => {
     expect(component.stepChange.emit).toHaveBeenCalledWith(STEPS[2]);
   });
 
-  it('does not emit when a disabled step is clicked', () => {
+  it('does not emit when a disabled or incomplete step is clicked', () => {
     spyOn(component.currentIndexChange, 'emit');
     fixture.componentRef.setInput('clickableSteps', true);
-    fixture.componentRef.setInput('steps', [{ label: 'Account' }, { label: 'Review', state: 'disabled' }]);
+    fixture.componentRef.setInput('steps', [
+      { label: 'Account' },
+      { label: 'Review', state: 'disabled' },
+      { label: 'Confirmation', state: 'incomplete' },
+    ]);
     fixture.detectChanges();
 
     fixture.debugElement.queryAll(By.css('button.tdx-stepper__step'))[1].triggerEventHandler('click', new MouseEvent('click'));
+    fixture.debugElement.queryAll(By.css('button.tdx-stepper__step'))[2].triggerEventHandler('click', new MouseEvent('click'));
 
     expect(component.currentIndexChange.emit).not.toHaveBeenCalled();
   });
@@ -103,20 +124,27 @@ describe('StepperComponent', () => {
     expect(component.currentIndexChange.emit).toHaveBeenCalledWith(1);
   });
 
-  it('skips disabled steps when moving back and next', () => {
+  it('stops navigation at disabled and incomplete steps', () => {
     spyOn(component.currentIndexChange, 'emit');
     fixture.componentRef.setInput('steps', [
       { label: 'Account' },
       { label: 'Profile', state: 'disabled' },
-      { label: 'Review' },
+      { label: 'Review', state: 'incomplete' },
     ]);
     fixture.detectChanges();
 
     component.goNext();
     component.goBack();
 
-    expect(component.currentIndexChange.emit).toHaveBeenCalledWith(2);
-    expect(component.currentIndexChange.emit).toHaveBeenCalledWith(0);
+    expect(component.currentIndexChange.emit).not.toHaveBeenCalled();
+    expect(component.canGoNext).toBeFalse();
+
+    fixture.componentRef.setInput('currentIndex', 2);
+    fixture.detectChanges();
+
+    component.goBack();
+
+    expect(component.currentIndexChange.emit).not.toHaveBeenCalled();
   });
 
   it('applies horizontal connector toggle classes', () => {

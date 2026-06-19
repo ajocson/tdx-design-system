@@ -5,10 +5,11 @@ import { AppComponent } from './app.component';
 import { ButtonPreviewModule } from './button-preview/button-preview.module';
 import { HomeComponent } from './home/home.component';
 import { StepperPreviewModule } from './stepper-preview/stepper-preview.module';
+import { TagPreviewModule } from './tag-preview/tag-preview.module';
 
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, ButtonPreviewModule, StepperPreviewModule],
+  imports: [BrowserModule, AppRoutingModule, ButtonPreviewModule, StepperPreviewModule, TagPreviewModule],
 })
 export class AppModule {}

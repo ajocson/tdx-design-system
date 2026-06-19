@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ButtonPreviewComponent } from './button-preview/button-preview.component';
 import { HomeComponent } from './home/home.component';
 import { StepperPreviewComponent } from './stepper-preview/stepper-preview.component';
+import { TagPreviewComponent } from './tag-preview/tag-preview.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: 'stepper',
     component: StepperPreviewComponent,
     title: 'TDX Stepper Preview',
+  },
+  {
+    path: 'tags',
+    component: TagPreviewComponent,
+    title: 'TDX Tag Preview',
   },
   {
     path: '**',

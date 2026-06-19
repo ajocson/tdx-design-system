@@ -1,0 +1,22 @@
+<span class="tdx-tag" [ngClass]="tagClasses">
+  <span
+    *ngIf="leadingIcon"
+    class="tdx-tag__icon material-symbols-rounded"
+    aria-hidden="true"
+  >
+    {{ leadingIcon }}
+  </span>
+
+  <span class="tdx-tag__label">{{ label }}</span>
+
+  <button
+    *ngIf="removable"
+    class="tdx-tag__remove"
+    type="button"
+    [attr.aria-label]="removeAriaLabel"
+    [disabled]="disabled"
+    (click)="handleRemove($event)"
+  >
+    <span class="tdx-tag__remove-icon material-symbols-rounded" aria-hidden="true">cancel</span>
+  </button>
+</span>
