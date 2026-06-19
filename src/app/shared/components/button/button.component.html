@@ -2,7 +2,7 @@
   type="button"
   class="tdx-button"
   [ngClass]="buttonClasses"
-  [disabled]="disabled"
+  [disabled]="isInteractionDisabled"
   [attr.aria-busy]="isLoading ? 'true' : null"
   [attr.aria-label]="ariaLabel || null"
   [attr.aria-expanded]="ariaExpanded ?? null"

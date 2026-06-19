@@ -14,7 +14,7 @@
 }
 
 @mixin outline-button($variant) {
-  background: transparent;
+  background: var(--button-#{$variant}-outline-bg-default, transparent);
   border-color: var(--button-#{$variant}-outline-border);
   color: var(--button-#{$variant}-outline-text);
 
@@ -136,6 +136,9 @@
 
   &:disabled {
     cursor: not-allowed;
+  }
+
+  &:disabled:not(.tdx-button--loading) {
     opacity: var(--button-disabled-opacity);
   }
 }

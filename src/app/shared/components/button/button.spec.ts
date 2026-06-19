@@ -95,7 +95,7 @@ describe('ButtonComponent', () => {
     const loadingDots = fixture.debugElement.queryAll(By.css('.tdx-button__loading-dot'));
     fixture.debugElement.query(By.css('button')).triggerEventHandler('click', new MouseEvent('click'));
 
-    expect(button.disabled).toBeFalse();
+    expect(button.disabled).toBeTrue();
     expect(button.getAttribute('aria-disabled')).toBe('true');
     expect(loadingDots.length).toBe(3);
     expect(component.clicked.emit).not.toHaveBeenCalled();
