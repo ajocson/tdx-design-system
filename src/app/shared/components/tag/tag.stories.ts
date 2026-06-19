@@ -59,6 +59,8 @@ type TagStoryState = 'default' | 'hover' | 'press' | 'focus' | 'active';
 
       .tdx-tag-story__tag--active {
         --tag-neutral-subtle-bg-default: var(--tag-neutral-active-bg);
+        --tag-neutral-subtle-bg-hover: var(--tag-neutral-active-bg);
+        --tag-neutral-subtle-bg-pressed: var(--tag-neutral-active-bg);
         --tag-neutral-subtle-border-default: var(--tag-neutral-active-border);
         --tag-neutral-subtle-icon-default: var(--tag-neutral-active-icon);
         --tag-neutral-subtle-text-default: var(--tag-neutral-active-text);
