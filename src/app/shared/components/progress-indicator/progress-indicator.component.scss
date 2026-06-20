@@ -1,0 +1,50 @@
+:host {
+  display: block;
+}
+
+.tdx-progress-indicator {
+  display: grid;
+  font-family: var(--typography-font-family-paragraph);
+  gap: var(--progress-layout-gap);
+  inline-size: min(var(--progress-width), 100%);
+  letter-spacing: var(--progress-letter-spacing);
+  min-width: 0;
+}
+
+.tdx-progress-indicator__header {
+  align-items: center;
+  display: flex;
+  font-size: var(--progress-font-size);
+  font-weight: var(--progress-font-weight);
+  justify-content: space-between;
+  line-height: var(--progress-line-height);
+}
+
+.tdx-progress-indicator__label {
+  color: var(--progress-label-text);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.tdx-progress-indicator__value {
+  color: var(--progress-value-text);
+  flex: 0 0 auto;
+}
+
+.tdx-progress-indicator__track {
+  background: var(--progress-track-bg);
+  border-radius: var(--progress-track-radius);
+  height: var(--progress-track-height);
+  overflow: hidden;
+}
+
+.tdx-progress-indicator__fill {
+  background: var(--progress-fraction-fill-bg);
+  border-radius: inherit;
+  display: block;
+  height: 100%;
+}
+
+.tdx-progress-indicator--percentage .tdx-progress-indicator__fill {
+  background: var(--progress-percentage-fill-bg);
+}

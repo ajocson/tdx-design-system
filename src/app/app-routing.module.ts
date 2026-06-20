@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ButtonPreviewComponent } from './button-preview/button-preview.component';
 import { HomeComponent } from './home/home.component';
+import { ProgressIndicatorPreviewComponent } from './progress-indicator-preview/progress-indicator-preview.component';
 import { StepperPreviewComponent } from './stepper-preview/stepper-preview.component';
 import { TagPreviewComponent } from './tag-preview/tag-preview.component';
 
@@ -26,6 +27,11 @@ const routes: Routes = [
     path: 'tags',
     component: TagPreviewComponent,
     title: 'TDX Tag Preview',
+  },
+  {
+    path: 'progress-indicator',
+    component: ProgressIndicatorPreviewComponent,
+    title: 'TDX Progress Indicator Preview',
   },
   {
     path: '**',

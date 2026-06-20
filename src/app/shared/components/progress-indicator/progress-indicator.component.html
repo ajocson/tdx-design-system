@@ -1,0 +1,21 @@
+<section class="tdx-progress-indicator" [ngClass]="indicatorClasses">
+  <div class="tdx-progress-indicator__header">
+    <span class="tdx-progress-indicator__label">{{ label }}</span>
+
+    <span *ngIf="displayedValue" class="tdx-progress-indicator__value">
+      {{ displayedValue }}
+    </span>
+  </div>
+
+  <div
+    class="tdx-progress-indicator__track"
+    role="progressbar"
+    [attr.aria-label]="ariaLabel"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [attr.aria-valuenow]="progress"
+    [attr.aria-valuetext]="displayedValue || null"
+  >
+    <span class="tdx-progress-indicator__fill" [style.width.%]="progress"></span>
+  </div>
+</section>

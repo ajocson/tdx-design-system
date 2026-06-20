@@ -1,0 +1,41 @@
+<main class="tdx-progress-indicator-preview">
+  <section class="tdx-progress-indicator-preview__theme" data-theme="light">
+    <header class="tdx-progress-indicator-preview__header">
+      <h1>Progress Indicator Playground</h1>
+      <p>Light mode</p>
+    </header>
+
+    <ng-container *ngTemplateOutlet="progressExamples"></ng-container>
+  </section>
+
+  <section class="tdx-progress-indicator-preview__theme" data-theme="dark">
+    <header class="tdx-progress-indicator-preview__header">
+      <h1>Progress Indicator Playground</h1>
+      <p>Dark mode</p>
+    </header>
+
+    <ng-container *ngTemplateOutlet="progressExamples"></ng-container>
+  </section>
+
+  <ng-template #progressExamples>
+    <section class="tdx-progress-indicator-preview__section">
+      <h2>Fraction</h2>
+      <tdx-progress-indicator
+        label="Label"
+        valueType="fraction"
+        fractionValue="1/10"
+        [progress]="10">
+      </tdx-progress-indicator>
+    </section>
+
+    <section class="tdx-progress-indicator-preview__section">
+      <h2>Percentage</h2>
+      <tdx-progress-indicator
+        label="Loading"
+        valueType="percentage"
+        percentageValue="75%"
+        [progress]="75">
+      </tdx-progress-indicator>
+    </section>
+  </ng-template>
+</main>
