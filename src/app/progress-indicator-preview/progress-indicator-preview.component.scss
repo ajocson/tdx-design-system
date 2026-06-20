@@ -12,6 +12,7 @@
   background: var(--alias-surface-default);
   border: var(--border-width-xs-1) solid var(--border-neutral-default-secondary);
   border-radius: var(--radius-lg);
+  color: var(--text-neutral-primary);
   display: grid;
   gap: var(--space-5xl);
   padding: var(--space-6xl);
@@ -46,6 +47,27 @@
   line-height: var(--paragraph-md-line-height);
 }
 
+.tdx-progress-indicator-preview__examples {
+  align-items: start;
+  column-gap: var(--space-8xl);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tdx-progress-indicator-preview__section {
+  min-width: 0;
+}
+
+.tdx-progress-indicator-preview__section tdx-progress-indicator {
+  --progress-width: 100%;
+}
+
+.tdx-progress-indicator-preview__controls {
+  display: flex;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
 @media (max-width: 767px) {
   .tdx-progress-indicator-preview {
     gap: var(--space-4xl);
@@ -54,5 +76,10 @@
 
   .tdx-progress-indicator-preview__theme {
     padding: var(--space-3xl);
+  }
+
+  .tdx-progress-indicator-preview__examples {
+    gap: var(--space-5xl);
+    grid-template-columns: 1fr;
   }
 }

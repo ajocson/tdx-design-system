@@ -18,24 +18,48 @@
   </section>
 
   <ng-template #progressExamples>
-    <section class="tdx-progress-indicator-preview__section">
-      <h2>Fraction</h2>
-      <tdx-progress-indicator
-        label="Label"
-        valueType="fraction"
-        fractionValue="1/10"
-        [progress]="10">
-      </tdx-progress-indicator>
-    </section>
+    <div class="tdx-progress-indicator-preview__examples">
+      <section class="tdx-progress-indicator-preview__section">
+        <h2>Fraction</h2>
+        <tdx-progress-indicator
+          label="Label"
+          valueType="fraction"
+          [fractionValue]="fractionValue"
+          [progress]="fractionProgress">
+        </tdx-progress-indicator>
 
-    <section class="tdx-progress-indicator-preview__section">
-      <h2>Percentage</h2>
-      <tdx-progress-indicator
-        label="Loading"
-        valueType="percentage"
-        percentageValue="75%"
-        [progress]="75">
-      </tdx-progress-indicator>
-    </section>
+        <div class="tdx-progress-indicator-preview__controls" aria-label="Progress step controls">
+          <tdx-button
+            [label]="''"
+            [variant]="TdxButtonVariant.Subtle"
+            [size]="TdxButtonSize.Small"
+            leftIcon="arrow_back"
+            ariaLabel="Back"
+            [disabled]="!canGoBack"
+            (clicked)="goBack()">
+          </tdx-button>
+
+          <tdx-button
+            [label]="''"
+            [variant]="TdxButtonVariant.Subtle"
+            [size]="TdxButtonSize.Small"
+            leftIcon="arrow_forward"
+            ariaLabel="Next"
+            [disabled]="!canGoNext"
+            (clicked)="goNext()">
+          </tdx-button>
+        </div>
+      </section>
+
+      <section class="tdx-progress-indicator-preview__section">
+        <h2>Percentage</h2>
+        <tdx-progress-indicator
+          label="Loading"
+          valueType="percentage"
+          [percentageValue]="percentageValue"
+          [progress]="percentageProgress">
+        </tdx-progress-indicator>
+      </section>
+    </div>
   </ng-template>
 </main>
