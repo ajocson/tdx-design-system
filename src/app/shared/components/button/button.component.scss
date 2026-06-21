@@ -145,7 +145,7 @@
 
 .tdx-button__label {
   display: inline-flex;
-  padding-inline: var(--button-label-padding-x);
+  padding-inline: var(--button-icon-gap-xs);
 }
 
 .tdx-button__icon {
@@ -368,6 +368,6 @@
 
   40% {
     opacity: 1;
-    transform: translateY(-2px);
+    transform: translateY(calc(var(--space-2xs) * -1));
   }
 }

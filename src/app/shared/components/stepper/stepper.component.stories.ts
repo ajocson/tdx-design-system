@@ -8,9 +8,10 @@ import { StepperModule } from './stepper.module';
 import { STEPPER_ORIENTATIONS, StepperOrientation, StepperStep, StepperVisualState } from './stepper.model';
 
 const DEFAULT_STEPS: StepperStep[] = [
-  { label: 'Account', state: 'current' },
-  { label: 'Profile', state: 'upcoming' },
-  { label: 'Review', state: 'disabled' },
+  { label: 'Step Label', state: 'current' },
+  { label: 'Step Label', state: 'upcoming' },
+  { label: 'Step Label', state: 'incomplete' },
+  { label: 'Step Label', state: 'disabled' },
 ];
 
 type StepperStoryTheme = 'light' | 'dark';

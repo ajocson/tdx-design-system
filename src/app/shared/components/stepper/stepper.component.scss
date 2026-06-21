@@ -3,7 +3,7 @@
 }
 
 .tdx-stepper {
-  color: var(--stepper-label-text-upcoming);
+  color: var(--stepper-label-text);
   display: grid;
   font-family: var(--typography-font-family-paragraph);
   gap: var(--stepper-gap);
@@ -44,7 +44,6 @@
   grid-template-columns: minmax(0, 1fr) var(--stepper-indicator-size) minmax(0, 1fr);
   grid-template-rows: var(--stepper-indicator-size) auto;
   justify-items: center;
-  min-width: var(--stepper-horizontal-item-min-width);
 }
 
 .tdx-stepper__step {
@@ -99,7 +98,7 @@ button.tdx-stepper__step:focus-visible {
   background: transparent;
   border: 0;
   border-radius: var(--radius-round);
-  color: var(--stepper-indicator-text-upcoming);
+  color: var(--stepper-icon-upcoming);
   display: inline-flex;
   flex: 0 0 var(--stepper-indicator-size);
   height: var(--stepper-indicator-size);
@@ -124,7 +123,7 @@ button.tdx-stepper__step:focus-visible {
 .tdx-stepper__number {
   color: var(--stepper-indicator-number-text);
   font-size: var(--caption-sm-text-size);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   left: 50%;
   line-height: var(--caption-sm-line-height);
   position: absolute;
@@ -133,16 +132,15 @@ button.tdx-stepper__step:focus-visible {
 }
 
 .tdx-stepper__label {
-  color: var(--stepper-label-text-upcoming);
+  color: var(--stepper-label-text);
   font-size: var(--paragraph-sm-text-size);
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   line-height: var(--paragraph-sm-line-height);
   min-width: 0;
   overflow-wrap: anywhere;
 }
 
 .tdx-stepper--horizontal .tdx-stepper__label {
-  max-width: var(--stepper-horizontal-label-max-width);
   padding-inline: var(--stepper-horizontal-label-padding);
 }
 
@@ -155,8 +153,8 @@ button.tdx-stepper__step:focus-visible {
 
 .tdx-stepper--vertical .tdx-stepper__connector {
   height: calc(
-    var(--stepper-vertical-item-min-height) - var(--stepper-indicator-size) -
-      (var(--stepper-vertical-connector-gap) * 2)
+    var(--stepper-vertical-connector-size) - var(--stepper-vertical-connector-gap) -
+      var(--stepper-vertical-connector-gap)
   );
   left: calc((var(--stepper-indicator-size) - var(--stepper-connector-thickness)) / 2);
   position: absolute;
@@ -193,8 +191,7 @@ button.tdx-stepper__step:focus-visible {
 
 .tdx-stepper__item--completed .tdx-stepper__indicator {
   animation: tdx-stepper-complete-pop var(--stepper-complete-pop-duration) var(--stepper-complete-pop-timing);
-  background: var(--stepper-indicator-bg-completed);
-  color: var(--stepper-indicator-text-completed);
+  color: var(--stepper-icon-completed);
 }
 
 .tdx-stepper__item--completed .tdx-stepper__icon {
@@ -203,61 +200,39 @@ button.tdx-stepper__step:focus-visible {
   width: var(--stepper-completed-check-size);
 }
 
-.tdx-stepper__item--completed .tdx-stepper__label {
-  color: var(--stepper-label-text-completed);
-}
-
 .tdx-stepper__item--current .tdx-stepper__indicator {
-  color: var(--stepper-indicator-text-current);
+  color: var(--stepper-icon-current);
 }
 
 .tdx-stepper__item--current .tdx-stepper__indicator::before {
-  color: var(--stepper-indicator-text-current);
+  color: var(--stepper-icon-current);
   content: 'circle';
   font-family: 'Material Symbols Rounded';
   font-size: var(--stepper-current-halo-size);
   font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   left: 50%;
   line-height: 1;
-  opacity: var(--stepper-indicator-opacity-current);
+  opacity: var(--stepper-icon-opacity);
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
 .tdx-stepper__item--current .tdx-stepper__label {
-  color: var(--stepper-label-text-current);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .tdx-stepper__item--incomplete .tdx-stepper__indicator {
-  color: var(--stepper-indicator-text-incomplete);
-}
-
-.tdx-stepper__item--incomplete .tdx-stepper__label {
-  color: var(--stepper-label-text-incomplete);
-  font-weight: 400;
+  color: var(--stepper-icon-warning);
 }
 
 .tdx-stepper__item--disabled .tdx-stepper__indicator {
-  color: var(--stepper-indicator-text-disabled);
-  opacity: var(--stepper-opacity-disabled);
+  color: var(--stepper-icon-disabled);
+  opacity: var(--stepper-disabled-opacity);
 }
 
 .tdx-stepper__item--disabled .tdx-stepper__label {
-  color: var(--stepper-label-text-disabled);
-  opacity: var(--stepper-opacity-disabled);
-}
-
-.tdx-stepper__item--disabled .tdx-stepper__connector {
-  background: var(--stepper-connector-bg-disabled);
-}
-
-.tdx-stepper__hint {
-  color: var(--text-neutral-secondary);
-  font-size: var(--paragraph-sm-text-size);
-  line-height: var(--paragraph-sm-line-height);
-  margin: 0;
+  opacity: var(--stepper-disabled-opacity);
 }
 
 .tdx-stepper__controls {

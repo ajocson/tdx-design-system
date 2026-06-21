@@ -19,6 +19,11 @@
   --icon-xl: 16px;
   --icon-2xl: 20px;
   --icon-3xl: 24px;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --responsive-spacing-layout-xs: var(--space-xs);
+  --responsive-spacing-layout-sm: var(--space-sm);
+  --responsive-spacing-layout-lg: var(--space-lg);
   --button-font-weight: 700;
   --button-letter-spacing: 0;
   --button-height-lg: 52px;
@@ -27,7 +32,7 @@
   --button-icon-size-lg: var(--icon-3xl);
   --button-icon-size-md: var(--icon-2xl);
   --button-icon-size-sm: var(--icon-xl);
-  --button-label-padding-x: var(--space-xs);
+  --button-icon-gap-xs: var(--space-xs);
   --button-padding-x-lg: 20px;
   --button-padding-y-lg: 12px;
   --button-padding-x-md: 16px;
@@ -63,6 +68,10 @@
   --surface-default: #ffffff;
   --alias-surface-default: var(--surface-default);
   --icon-brand-default: #3a1971;
+  --icon-success-default: #448214;
+  --icon-secondary-default: #a82675;
+  --icon-neutral-secondary: #7e889c;
+  --icon-warning-contrast-default: #f99f1b;
   --background-brand-subtle-brand: #eee6fa;
   --text-neutral-primary: #364154;
   --text-neutral-secondary: #5f6a81;
@@ -343,54 +352,71 @@
   --tag-info-outline-bg-pressed: #eef9fc;
   --tag-info-outline-border-default: #cfeff5;
 
-  /* Proposed component tokens for Stepper mapped to existing semantic tokens. */
+  /* Figma Tag component state aliases. The existing subtle API maps to Figma's default Tag treatment. */
+  --tag-neutral-bg-default: var(--tag-neutral-subtle-bg-default);
+  --tag-neutral-bg-hover: var(--tag-neutral-subtle-bg-hover);
+  --tag-neutral-bg-pressed: var(--tag-neutral-subtle-bg-pressed);
+  --tag-neutral-border-default: var(--tag-neutral-subtle-border-default);
+  --tag-neutral-icon-default: var(--tag-neutral-subtle-icon-default);
+  --tag-neutral-text-default: var(--tag-neutral-subtle-text-default);
+  --tag-primary-bg-default: var(--tag-primary-subtle-bg-default);
+  --tag-primary-bg-hover: var(--tag-primary-subtle-bg-hover);
+  --tag-primary-bg-pressed: var(--tag-primary-subtle-bg-pressed);
+  --tag-primary-border-default: var(--tag-primary-subtle-border-default);
+  --tag-primary-icon-default: var(--tag-primary-subtle-icon-default);
+  --tag-primary-text-default: var(--tag-primary-subtle-text-default);
+  --tag-success-bg-default: var(--tag-success-subtle-bg-default);
+  --tag-success-bg-hover: var(--tag-success-subtle-bg-hover);
+  --tag-success-bg-pressed: var(--tag-success-subtle-bg-pressed);
+  --tag-success-border-default: var(--tag-success-subtle-border-default);
+  --tag-success-icon-default: var(--tag-success-subtle-icon-default);
+  --tag-success-text-default: var(--tag-success-subtle-text-default);
+  --tag-warning-bg-default: var(--tag-warning-subtle-bg-default);
+  --tag-warning-bg-hover: var(--tag-warning-subtle-bg-hover);
+  --tag-warning-bg-pressed: var(--tag-warning-subtle-bg-pressed);
+  --tag-warning-border-default: var(--tag-warning-subtle-border-default);
+  --tag-warning-icon-default: var(--tag-warning-subtle-icon-default);
+  --tag-warning-text-default: var(--tag-warning-subtle-text-default);
+  --tag-danger-bg-default: var(--tag-danger-subtle-bg-default);
+  --tag-danger-bg-hover: var(--tag-danger-subtle-bg-hover);
+  --tag-danger-bg-pressed: var(--tag-danger-subtle-bg-pressed);
+  --tag-danger-border-default: var(--tag-danger-subtle-border-default);
+  --tag-danger-icon-default: var(--tag-danger-subtle-icon-default);
+  --tag-danger-text-default: var(--tag-danger-subtle-text-default);
+  --tag-info-bg-default: var(--tag-info-subtle-bg-default);
+  --tag-info-bg-hover: var(--tag-info-subtle-bg-hover);
+  --tag-info-bg-pressed: var(--tag-info-subtle-bg-pressed);
+  --tag-info-border-default: var(--tag-info-subtle-border-default);
+  --tag-info-icon-default: var(--tag-info-subtle-icon-default);
+  --tag-info-text-default: var(--tag-info-subtle-text-default);
+
+  /* Figma mapped/component tokens for Stepper. */
   --stepper-gap: var(--space-3xl);
-  --stepper-vertical-label-gap: var(--space-sm);
-  --stepper-horizontal-label-gap: var(--space-xs);
-  --stepper-horizontal-label-max-width: 140px;
-  --stepper-horizontal-label-padding: var(--space-lg);
-  --stepper-indicator-size: 20px;
+  --stepper-vertical-label-gap: var(--responsive-spacing-layout-sm);
+  --stepper-horizontal-label-gap: var(--responsive-spacing-layout-xs);
+  --stepper-horizontal-label-padding: var(--responsive-spacing-layout-lg);
+  --stepper-indicator-size: var(--icon-2xl);
   --stepper-icon-size: var(--icon-2xl);
-  --stepper-completed-check-size: var(--button-icon-size-sm);
+  --stepper-completed-check-size: var(--icon-2xl);
   --stepper-current-halo-size: var(--icon-3xl);
   --stepper-connector-thickness: var(--border-width-xs-2);
-  --stepper-horizontal-connector-gap: calc(var(--space-xs) * 0.77);
-  --stepper-vertical-connector-gap: calc(var(--space-xs) * 0.77);
-  --stepper-vertical-connector-space: 18px;
-  --stepper-vertical-connector-height: calc(
-    var(--stepper-vertical-connector-space) - (var(--stepper-vertical-connector-gap) * 2)
-  );
-  --stepper-vertical-item-min-height: 38px;
-  --stepper-horizontal-item-min-width: 80px;
-  --stepper-horizontal-preview-width: 401px;
+  --stepper-horizontal-connector-gap: var(--space-2xs);
+  --stepper-vertical-connector-gap: var(--space-2xs);
+  --stepper-vertical-connector-size: calc(var(--paragraph-sm-line-height) - var(--space-2xs));
+  --stepper-vertical-item-min-height: calc(var(--stepper-indicator-size) + var(--stepper-vertical-connector-size));
   --stepper-focus-ring: var(--button-primary-focus-ring);
   --stepper-complete-pop-duration: 220ms;
   --stepper-complete-pop-timing: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --stepper-indicator-opacity-current: 30%;
-  --stepper-opacity-disabled: 40%;
-  --stepper-indicator-bg-completed: #448214;
-  --stepper-indicator-bg-current: transparent;
-  --stepper-indicator-bg-upcoming: transparent;
-  --stepper-indicator-bg-incomplete: transparent;
-  --stepper-indicator-bg-disabled: transparent;
-  --stepper-indicator-border-completed: transparent;
-  --stepper-indicator-border-current: transparent;
-  --stepper-indicator-border-upcoming: transparent;
-  --stepper-indicator-border-incomplete: transparent;
-  --stepper-indicator-border-disabled: transparent;
-  --stepper-indicator-text-completed: #ffffff;
-  --stepper-indicator-text-current: #a82675;
-  --stepper-indicator-text-upcoming: #7e889c;
-  --stepper-indicator-text-incomplete: #f99f1b;
-  --stepper-indicator-text-disabled: #7e889c;
+  --stepper-icon-opacity: 30%;
+  --stepper-disabled-opacity: 40%;
+  --stepper-icon-completed: var(--icon-success-default);
+  --stepper-icon-current: var(--icon-secondary-default);
+  --stepper-icon-upcoming: var(--icon-neutral-secondary);
+  --stepper-icon-warning: var(--icon-warning-contrast-default);
+  --stepper-icon-disabled: var(--icon-neutral-secondary);
   --stepper-indicator-number-text: var(--text-neutral-inverse);
-  --stepper-label-text-completed: #364154;
-  --stepper-label-text-current: #364154;
-  --stepper-label-text-upcoming: #364154;
-  --stepper-label-text-incomplete: #364154;
-  --stepper-label-text-disabled: #364154;
-  --stepper-connector-bg-default: #e6eaf0;
-  --stepper-connector-bg-disabled: #e6eaf0;
+  --stepper-label-text: var(--text-neutral-primary);
+  --stepper-connector-bg-default: var(--border-neutral-default-tertiary);
 }
 
 [data-theme='dark'] {
@@ -398,10 +424,14 @@
   --surface-default: #2f2f2f;
   --alias-surface-default: var(--surface-default);
   --icon-brand-default: #d3c0f1;
+  --icon-success-default: #529219;
+  --icon-secondary-default: #c13c92;
+  --icon-neutral-secondary: #7e889c;
+  --icon-warning-contrast-default: #d88916;
   --background-brand-subtle-brand: #3a1971;
   --text-neutral-primary: #f9fafb;
   --text-neutral-secondary: #c7ced9;
-  --text-neutral-inverse: #111827;
+  --text-neutral-inverse: #f9fafb;
   --border-neutral-default-secondary: #5f6a81;
   --border-neutral-default-tertiary: #454545;
   --button-primary-focus-ring: #aa86e4;
@@ -649,15 +679,51 @@
   --tag-info-outline-bg-pressed: #08363e;
   --tag-info-outline-border-default: #1f8796;
 
-  --stepper-indicator-bg-incomplete: #4d3310;
-  --stepper-indicator-bg-disabled: #364154;
-  --stepper-label-text-completed: var(--text-neutral-primary);
-  --stepper-label-text-current: var(--text-neutral-primary);
-  --stepper-label-text-upcoming: var(--text-neutral-primary);
-  --stepper-label-text-incomplete: var(--text-neutral-primary);
-  --stepper-label-text-disabled: var(--text-neutral-primary);
-  --stepper-connector-bg-default: #5f6a81;
-  --stepper-connector-bg-disabled: #5f6a81;
+  --tag-neutral-bg-default: var(--tag-neutral-subtle-bg-default);
+  --tag-neutral-bg-hover: var(--tag-neutral-subtle-bg-hover);
+  --tag-neutral-bg-pressed: var(--tag-neutral-subtle-bg-pressed);
+  --tag-neutral-border-default: var(--tag-neutral-subtle-border-default);
+  --tag-neutral-icon-default: var(--tag-neutral-subtle-icon-default);
+  --tag-neutral-text-default: var(--tag-neutral-subtle-text-default);
+  --tag-primary-bg-default: var(--tag-primary-subtle-bg-default);
+  --tag-primary-bg-hover: var(--tag-primary-subtle-bg-hover);
+  --tag-primary-bg-pressed: var(--tag-primary-subtle-bg-pressed);
+  --tag-primary-border-default: var(--tag-primary-subtle-border-default);
+  --tag-primary-icon-default: var(--tag-primary-subtle-icon-default);
+  --tag-primary-text-default: var(--tag-primary-subtle-text-default);
+  --tag-success-bg-default: var(--tag-success-subtle-bg-default);
+  --tag-success-bg-hover: var(--tag-success-subtle-bg-hover);
+  --tag-success-bg-pressed: var(--tag-success-subtle-bg-pressed);
+  --tag-success-border-default: var(--tag-success-subtle-border-default);
+  --tag-success-icon-default: var(--tag-success-subtle-icon-default);
+  --tag-success-text-default: var(--tag-success-subtle-text-default);
+  --tag-warning-bg-default: var(--tag-warning-subtle-bg-default);
+  --tag-warning-bg-hover: var(--tag-warning-subtle-bg-hover);
+  --tag-warning-bg-pressed: var(--tag-warning-subtle-bg-pressed);
+  --tag-warning-border-default: var(--tag-warning-subtle-border-default);
+  --tag-warning-icon-default: var(--tag-warning-subtle-icon-default);
+  --tag-warning-text-default: var(--tag-warning-subtle-text-default);
+  --tag-danger-bg-default: var(--tag-danger-subtle-bg-default);
+  --tag-danger-bg-hover: var(--tag-danger-subtle-bg-hover);
+  --tag-danger-bg-pressed: var(--tag-danger-subtle-bg-pressed);
+  --tag-danger-border-default: var(--tag-danger-subtle-border-default);
+  --tag-danger-icon-default: var(--tag-danger-subtle-icon-default);
+  --tag-danger-text-default: var(--tag-danger-subtle-text-default);
+  --tag-info-bg-default: var(--tag-info-subtle-bg-default);
+  --tag-info-bg-hover: var(--tag-info-subtle-bg-hover);
+  --tag-info-bg-pressed: var(--tag-info-subtle-bg-pressed);
+  --tag-info-border-default: var(--tag-info-subtle-border-default);
+  --tag-info-icon-default: var(--tag-info-subtle-icon-default);
+  --tag-info-text-default: var(--tag-info-subtle-text-default);
+
+  --stepper-connector-bg-default: var(--border-neutral-default-tertiary);
+  --stepper-icon-completed: var(--icon-success-default);
+  --stepper-icon-current: var(--icon-secondary-default);
+  --stepper-icon-upcoming: var(--icon-neutral-secondary);
+  --stepper-icon-warning: var(--icon-warning-contrast-default);
+  --stepper-icon-disabled: var(--icon-neutral-secondary);
+  --stepper-indicator-number-text: var(--text-neutral-inverse);
+  --stepper-label-text: var(--text-neutral-primary);
 }
 
 @media (max-width: 767px) {
@@ -674,6 +740,7 @@
     --icon-xl: 14px;
     --icon-2xl: 18px;
     --icon-3xl: 20px;
+    --responsive-spacing-layout-lg: 10px;
     --button-padding-x-lg: 16px;
     --button-padding-y-lg: 10px;
     --button-padding-x-md: 12px;

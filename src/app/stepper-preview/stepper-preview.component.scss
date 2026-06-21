@@ -63,8 +63,8 @@
 }
 
 .tdx-stepper-preview__horizontal-figma {
+  inline-size: max-content;
   max-width: 100%;
-  width: var(--stepper-horizontal-preview-width);
 }
 
 .tdx-stepper-preview__controls {

@@ -44,10 +44,6 @@
     </li>
   </ol>
 
-  <p *ngIf="steps.length > 0 && !minimumStepsMet" class="tdx-stepper__hint" role="status">
-    Add at least two steps to preview the complete stepper pattern.
-  </p>
-
   <div *ngIf="showPreviewControls" class="tdx-stepper__controls">
     <app-button
       [label]="''"

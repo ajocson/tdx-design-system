@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { ArgTypes, Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 
 import { TagModule } from './tag.module';
-import { TdxTagEmphasis, TdxTagVariant } from './tag.model';
+import { TDX_TAG_VARIANTS, TdxTagEmphasis, TdxTagVariant } from './tag.model';
 
 type TagStoryTheme = 'light' | 'dark';
 type TagStoryState = 'default' | 'hover' | 'press' | 'focus' | 'active';
@@ -18,7 +18,7 @@ type TagStoryState = 'default' | 'hover' | 'press' | 'focus' | 'active';
         [label]="label"
         [variant]="variant"
         [emphasis]="tagEmphasis"
-        [leadingIcon]="leadingIcon"
+        [leadingIcon]="iconLeft ? leadingIcon : null"
         [removable]="removable"
         [disabled]="disabled">
       </tdx-tag>
@@ -40,30 +40,30 @@ type TagStoryState = 'default' | 'hover' | 'press' | 'focus' | 'active';
       }
 
       .tdx-tag-story__tag--hover {
-        --tag-neutral-subtle-bg-default: var(--tag-neutral-subtle-bg-hover);
-        --tag-primary-subtle-bg-default: var(--tag-primary-subtle-bg-hover);
-        --tag-success-subtle-bg-default: var(--tag-success-subtle-bg-hover);
-        --tag-warning-subtle-bg-default: var(--tag-warning-subtle-bg-hover);
-        --tag-danger-subtle-bg-default: var(--tag-danger-subtle-bg-hover);
-        --tag-info-subtle-bg-default: var(--tag-info-subtle-bg-hover);
+        --tag-neutral-bg-default: var(--tag-neutral-bg-hover);
+        --tag-primary-bg-default: var(--tag-primary-bg-hover);
+        --tag-success-bg-default: var(--tag-success-bg-hover);
+        --tag-warning-bg-default: var(--tag-warning-bg-hover);
+        --tag-danger-bg-default: var(--tag-danger-bg-hover);
+        --tag-info-bg-default: var(--tag-info-bg-hover);
       }
 
       .tdx-tag-story__tag--press {
-        --tag-neutral-subtle-bg-default: var(--tag-neutral-subtle-bg-pressed);
-        --tag-primary-subtle-bg-default: var(--tag-primary-subtle-bg-pressed);
-        --tag-success-subtle-bg-default: var(--tag-success-subtle-bg-pressed);
-        --tag-warning-subtle-bg-default: var(--tag-warning-subtle-bg-pressed);
-        --tag-danger-subtle-bg-default: var(--tag-danger-subtle-bg-pressed);
-        --tag-info-subtle-bg-default: var(--tag-info-subtle-bg-pressed);
+        --tag-neutral-bg-default: var(--tag-neutral-bg-pressed);
+        --tag-primary-bg-default: var(--tag-primary-bg-pressed);
+        --tag-success-bg-default: var(--tag-success-bg-pressed);
+        --tag-warning-bg-default: var(--tag-warning-bg-pressed);
+        --tag-danger-bg-default: var(--tag-danger-bg-pressed);
+        --tag-info-bg-default: var(--tag-info-bg-pressed);
       }
 
       .tdx-tag-story__tag--active {
-        --tag-neutral-subtle-bg-default: var(--tag-neutral-active-bg);
-        --tag-neutral-subtle-bg-hover: var(--tag-neutral-active-bg);
-        --tag-neutral-subtle-bg-pressed: var(--tag-neutral-active-bg);
-        --tag-neutral-subtle-border-default: var(--tag-neutral-active-border);
-        --tag-neutral-subtle-icon-default: var(--tag-neutral-active-icon);
-        --tag-neutral-subtle-text-default: var(--tag-neutral-active-text);
+        --tag-neutral-bg-default: var(--tag-neutral-active-bg);
+        --tag-neutral-bg-hover: var(--tag-neutral-active-bg);
+        --tag-neutral-bg-pressed: var(--tag-neutral-active-bg);
+        --tag-neutral-border-default: var(--tag-neutral-active-border);
+        --tag-neutral-icon-default: var(--tag-neutral-active-icon);
+        --tag-neutral-text-default: var(--tag-neutral-active-text);
       }
 
       .tdx-tag-story__tag--focus {
@@ -93,6 +93,7 @@ class TagStoryHostComponent {
   @Input() variant: TdxTagVariant = TdxTagVariant.Neutral;
   @Input() state: TagStoryState = 'default';
   @Input() leadingIcon?: string;
+  @Input() iconLeft = true;
   @Input() removable = false;
   @Input() disabled = false;
   @Input() theme: TagStoryTheme = 'light';
@@ -105,9 +106,18 @@ const sharedArgTypes: ArgTypes<TagStoryHostComponent> = {
     control: 'text',
   },
   variant: {
-    table: {
-      disable: true,
+    control: {
+      type: 'select',
+      labels: {
+        neutral: 'default',
+        primary: 'purple',
+        success: 'green',
+        warning: 'yellow',
+        danger: 'red',
+        info: 'info',
+      },
     },
+    options: TDX_TAG_VARIANTS,
   },
   state: {
     control: 'select',
@@ -115,6 +125,10 @@ const sharedArgTypes: ArgTypes<TagStoryHostComponent> = {
   },
   leadingIcon: {
     control: 'text',
+  },
+  iconLeft: {
+    name: 'Icon Left',
+    control: 'boolean',
   },
   removable: {
     control: 'boolean',
@@ -149,6 +163,14 @@ export default meta;
 
 type Story = StoryObj<TagStoryHostComponent>;
 
+const fixedVariantArgTypes = {
+  variant: {
+    table: {
+      disable: true,
+    },
+  },
+};
+
 const createColorStory = (
   variant: TdxTagVariant,
   supportsActive = false,
@@ -159,11 +181,13 @@ const createColorStory = (
     variant,
     state: 'default',
     leadingIcon: 'info',
+    iconLeft: true,
     removable: false,
     disabled: false,
     theme: 'light',
   },
   argTypes: {
+    ...fixedVariantArgTypes,
     ...(supportsActive
       ? {}
       : {
@@ -183,6 +207,19 @@ const createColorStory = (
         }),
   },
 });
+
+export const Playground: Story = {
+  args: {
+    label: 'Tag',
+    variant: TdxTagVariant.Neutral,
+    state: 'default',
+    leadingIcon: 'info',
+    iconLeft: true,
+    removable: false,
+    disabled: false,
+    theme: 'light',
+  },
+};
 
 export const Default: Story = createColorStory(TdxTagVariant.Neutral, true, true);
 export const Purple: Story = createColorStory(TdxTagVariant.Primary);

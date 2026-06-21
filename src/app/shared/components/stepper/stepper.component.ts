@@ -36,10 +36,6 @@ export class StepperComponent {
     return this.resolvedCurrentIndex;
   }
 
-  get minimumStepsMet(): boolean {
-    return this.steps.length >= 2;
-  }
-
   get resolvedCurrentIndex(): number {
     if (this.steps.length === 0) {
       return 0;
@@ -98,7 +94,7 @@ export class StepperComponent {
     const visualState = this.getStepVisualState(step, index);
 
     if (visualState === 'completed') {
-      return 'check';
+      return 'check_circle';
     }
 
     if (visualState === 'incomplete') {

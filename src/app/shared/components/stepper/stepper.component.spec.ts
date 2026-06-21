@@ -67,6 +67,15 @@ describe('StepperComponent', () => {
     expect(items[2].query(By.css('.tdx-stepper__step')).nativeElement.tagName.toLowerCase()).toBe('div');
   });
 
+  it('uses the Figma completed-state icon', () => {
+    fixture.componentRef.setInput('steps', [{ label: 'Account', state: 'completed' }]);
+    fixture.detectChanges();
+
+    const icon = fixture.debugElement.query(By.css('.tdx-stepper__icon'));
+
+    expect(icon.nativeElement.textContent.trim()).toBe('check_circle');
+  });
+
   it('renders configured visual states without deriving them from the current index', () => {
     fixture.componentRef.setInput('steps', [
       { label: 'Account', state: 'completed' },
