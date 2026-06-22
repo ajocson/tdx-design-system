@@ -1,6 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  Controls,
+  Description,
+  Markdown,
+  Primary as PrimaryDocs,
+  Title,
+} from '@storybook/addon-docs/blocks';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { createElement, Fragment } from 'react';
 
 import { ButtonModule } from './button.module';
 
@@ -15,6 +23,88 @@ import {
 
 type ButtonStoryTheme = 'light' | 'dark';
 type ButtonStoryState = 'default' | 'hover' | 'pressed' | 'focus';
+
+const BUTTON_DOCUMENTATION = `## Variants
+
+- Primary
+- Secondary
+- Success
+- Danger
+- Warning
+- Discovery
+- Subtle
+
+## Emphasis
+
+- Default
+- Outline
+- Transparent
+
+## Sizes
+
+- Small
+- Medium
+- Large
+
+## Design Tokens
+
+### Background
+
+- \`--button-primary-filled-bg-default\`
+- \`--button-primary-filled-bg-hover\`
+- \`--button-primary-filled-bg-pressed\`
+
+### Text
+
+- \`--button-primary-filled-text\`
+
+### Icon
+
+- \`--button-primary-filled-icon\`
+
+### Radius
+
+- \`--radius-round\`
+
+### Focus
+
+- \`--button-primary-focus-ring\`
+
+### Spacing
+
+- \`--button-padding-x-sm\`
+- \`--button-padding-y-sm\`
+- \`--button-padding-x-md\`
+- \`--button-padding-y-md\`
+- \`--button-padding-x-lg\`
+- \`--button-padding-y-lg\`
+
+### Typography
+
+- \`--typography-font-family-paragraph\`
+- \`--paragraph-sm-text-size\`
+- \`--paragraph-md-text-size\`
+- \`--paragraph-lg-text-size\`
+
+## Accessibility
+
+- Renders a native \`button\` for keyboard and assistive-technology support.
+- Forwards accessible labels to the native button element.
+- Preserves visible keyboard focus and communicates disabled and loading states through native button semantics.
+`;
+
+const ButtonDocsPage = () =>
+  createElement(
+    Fragment,
+    null,
+    createElement(Title),
+    createElement('h2', null, 'Component Overview'),
+    createElement(Description),
+    createElement(PrimaryDocs),
+    createElement('h2', null, 'Controls / Args Table'),
+    createElement(Controls),
+    createElement(Markdown, { children: BUTTON_DOCUMENTATION }),
+  );
 
 @Component({
   selector: 'tdx-button-story-host',
@@ -122,6 +212,20 @@ class ButtonStoryHostComponent {
 const meta: Meta<ButtonStoryHostComponent> = {
   title: 'Components/Button',
   component: ButtonStoryHostComponent,
+  tags: ['autodocs'],
+
+  parameters: {
+    docs: {
+      page: ButtonDocsPage,
+      description: {
+        component:
+          'The Button component triggers actions and allows users to interact with the system. It supports multiple variants, emphasis styles, sizes, loading states, and disabled states.',
+      },
+      source: {
+        type: 'dynamic',
+      },
+    },
+  },
 
   decorators: [
     moduleMetadata({
@@ -327,6 +431,22 @@ export const Loading: Story = {
     size: TdxButtonSize.Medium,
     disabled: false,
     loading: true,
+    leftIcon: '',
+    rightIcon: '',
+    theme: 'light',
+  },
+};
+
+export const Disabled: Story = {
+  argTypes: fixedVariantArgTypes,
+  args: {
+    label: 'Disabled Button',
+    variant: TdxButtonVariant.Primary,
+    emphasis: TdxButtonEmphasis.DEFAULT,
+    state: 'default',
+    size: TdxButtonSize.Medium,
+    disabled: true,
+    loading: false,
     leftIcon: '',
     rightIcon: '',
     theme: 'light',

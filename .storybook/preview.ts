@@ -4,7 +4,28 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
-        order: ['Components', ['Button', 'Stepper', 'Tag', 'Progress Indicator']],
+        order: [
+          'Components',
+          [
+            'Button',
+            [
+              'Docs',
+              'Playground',
+              'Primary',
+              'Secondary',
+              'Success',
+              'Danger',
+              'Warning',
+              'Discovery',
+              'Subtle',
+              'Loading',
+              'Disabled',
+            ],
+            'Stepper',
+            'Tag',
+            'Progress Indicator',
+          ],
+        ],
       },
     },
     controls: {
