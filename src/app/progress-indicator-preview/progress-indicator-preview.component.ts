@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { TdxButtonSize, TdxButtonVariant } from '../shared/components/button/button.model';
+import { TdxProgressBarVariant } from '../shared/components/progress-bar';
+
+interface ProgressBarPreviewItem {
+  label: string;
+  variant: TdxProgressBarVariant;
+}
 
 @Component({
   selector: 'app-progress-indicator-preview',
@@ -9,55 +14,27 @@ import { TdxButtonSize, TdxButtonVariant } from '../shared/components/button/but
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressIndicatorPreviewComponent implements OnInit, OnDestroy {
-  readonly totalSteps = 10;
-  readonly TdxButtonSize = TdxButtonSize;
-  readonly TdxButtonVariant = TdxButtonVariant;
+  readonly progressBars: ProgressBarPreviewItem[] = [
+    { label: 'Brand', variant: 'brand' },
+    { label: 'Success', variant: 'success' },
+    { label: 'Processing', variant: 'processing' },
+  ];
 
-  currentStep = 1;
-  percentageProgress = 0;
-
-  private percentageTimer?: ReturnType<typeof setInterval>;
+  progress = 10;
+  private progressTimer?: ReturnType<typeof setInterval>;
 
   constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
 
-  get fractionProgress(): number {
-    return (this.currentStep / this.totalSteps) * 100;
-  }
-
-  get fractionValue(): string {
-    return `${this.currentStep}/${this.totalSteps}`;
-  }
-
-  get percentageValue(): string {
-    return `${this.percentageProgress}%`;
-  }
-
-  get canGoBack(): boolean {
-    return this.currentStep > 1;
-  }
-
-  get canGoNext(): boolean {
-    return this.currentStep < this.totalSteps;
-  }
-
   ngOnInit(): void {
-    this.percentageTimer = setInterval(() => {
-      this.percentageProgress = (this.percentageProgress + 1) % 101;
+    this.progressTimer = setInterval(() => {
+      this.progress = (this.progress + 1) % 101;
       this.changeDetectorRef.markForCheck();
     }, 80);
   }
 
   ngOnDestroy(): void {
-    if (this.percentageTimer) {
-      clearInterval(this.percentageTimer);
+    if (this.progressTimer) {
+      clearInterval(this.progressTimer);
     }
-  }
-
-  goBack(): void {
-    this.currentStep = Math.max(1, this.currentStep - 1);
-  }
-
-  goNext(): void {
-    this.currentStep = Math.min(this.totalSteps, this.currentStep + 1);
   }
 }

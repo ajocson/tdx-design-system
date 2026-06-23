@@ -198,10 +198,25 @@
   --progress-font-weight: 700;
   --progress-letter-spacing: 0;
   --progress-layout-gap: var(--space-xs);
+  --progress-percentage-layout-gap: var(--space-none);
+  --progress-percentage-track-gap: var(--space-md);
   --progress-width: 216px;
   --progress-track-height: var(--space-md);
   --progress-track-radius: var(--radius-round);
   --progress-track-bg: var(--border-neutral-default-tertiary);
+  --progress-bar-height: var(--progress-track-height);
+  --progress-bar-radius: var(--progress-track-radius);
+  --progress-bar-track-bg: var(--progress-track-bg);
+  --progress-bar-brand-fill-bg: #7a4fcc;
+  --progress-bar-success-fill-bg: var(--progress-success-fill);
+  --progress-bar-processing-fill-bg: var(--progress-percentage-fill-bg);
+  --progress-icon-default: var(--progress-text-default);
+  --progress-cancel-size: var(--icon-xl);
+  --progress-cancel-icon-size: var(--icon-xl);
+  --progress-percentage-value-font-size: var(--caption-text-size);
+  --progress-percentage-value-line-height: var(--caption-line-height);
+  --progress-percentage-value-font-weight: var(--font-weight-regular);
+  --progress-percentage-value-letter-spacing: var(--progress-letter-spacing);
   --progress-success-fill: var(--button-success-filled-bg-default);
   --progress-fraction-fill-bg: var(--progress-success-fill);
   --progress-uploading-fill-left: var(--button-warning-filled-bg-hover);
@@ -438,6 +453,8 @@
   --button-secondary-focus-ring: #aa86e4;
   --progress-text-default: var(--text-neutral-primary);
   --progress-track-bg: var(--border-neutral-default-tertiary);
+  --progress-bar-track-bg: var(--progress-track-bg);
+  --progress-icon-default: var(--progress-text-default);
   --progress-success-fill: var(--button-success-filled-bg-default);
   --progress-fraction-fill-bg: var(--progress-success-fill);
   --progress-uploading-fill-left: var(--button-warning-filled-bg-hover);
@@ -447,6 +464,8 @@
     var(--progress-uploading-fill-left) 0%,
     var(--progress-uploading-fill-right) 100%
   );
+  --progress-bar-success-fill-bg: var(--progress-success-fill);
+  --progress-bar-processing-fill-bg: var(--progress-percentage-fill-bg);
   --progress-label-text: var(--progress-text-default);
   --progress-value-text: var(--progress-text-default);
   --button-primary-filled-icon: #f9fafb;

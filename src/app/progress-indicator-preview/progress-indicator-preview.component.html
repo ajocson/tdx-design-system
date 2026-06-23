@@ -1,64 +1,31 @@
-<main class="tdx-progress-indicator-preview">
-  <section class="tdx-progress-indicator-preview__theme" data-theme="light">
-    <header class="tdx-progress-indicator-preview__header">
-      <h1>Progress Indicator Playground</h1>
+<main class="tdx-progress-bar-preview">
+  <section class="tdx-progress-bar-preview__theme" data-theme="light">
+    <header class="tdx-progress-bar-preview__header">
+      <h1>Progress Bar Playground</h1>
       <p>Light mode</p>
     </header>
 
-    <ng-container *ngTemplateOutlet="progressExamples"></ng-container>
+    <ng-container *ngTemplateOutlet="progressBarExamples"></ng-container>
   </section>
 
-  <section class="tdx-progress-indicator-preview__theme" data-theme="dark">
-    <header class="tdx-progress-indicator-preview__header">
-      <h1>Progress Indicator Playground</h1>
+  <section class="tdx-progress-bar-preview__theme" data-theme="dark">
+    <header class="tdx-progress-bar-preview__header">
+      <h1>Progress Bar Playground</h1>
       <p>Dark mode</p>
     </header>
 
-    <ng-container *ngTemplateOutlet="progressExamples"></ng-container>
+    <ng-container *ngTemplateOutlet="progressBarExamples"></ng-container>
   </section>
 
-  <ng-template #progressExamples>
-    <div class="tdx-progress-indicator-preview__examples">
-      <section class="tdx-progress-indicator-preview__section">
-        <h2>Fraction</h2>
-        <tdx-progress-indicator
-          label="Label"
-          valueType="fraction"
-          [fractionValue]="fractionValue"
-          [progress]="fractionProgress">
-        </tdx-progress-indicator>
-
-        <div class="tdx-progress-indicator-preview__controls" aria-label="Progress step controls">
-          <tdx-button
-            [label]="''"
-            [variant]="TdxButtonVariant.Subtle"
-            [size]="TdxButtonSize.Small"
-            leftIcon="arrow_back"
-            ariaLabel="Back"
-            [disabled]="!canGoBack"
-            (clicked)="goBack()">
-          </tdx-button>
-
-          <tdx-button
-            [label]="''"
-            [variant]="TdxButtonVariant.Subtle"
-            [size]="TdxButtonSize.Small"
-            leftIcon="arrow_forward"
-            ariaLabel="Next"
-            [disabled]="!canGoNext"
-            (clicked)="goNext()">
-          </tdx-button>
-        </div>
-      </section>
-
-      <section class="tdx-progress-indicator-preview__section">
-        <h2>Percentage</h2>
-        <tdx-progress-indicator
-          label="Loading"
-          valueType="percentage"
-          [percentageValue]="percentageValue"
-          [progress]="percentageProgress">
-        </tdx-progress-indicator>
+  <ng-template #progressBarExamples>
+    <div class="tdx-progress-bar-preview__examples">
+      <section *ngFor="let progressBar of progressBars" class="tdx-progress-bar-preview__section">
+        <h2>{{ progressBar.label }}</h2>
+        <tdx-progress-bar
+          [ariaLabel]="progressBar.label + ' loading progress'"
+          [progress]="progress"
+          [variant]="progressBar.variant">
+        </tdx-progress-bar>
       </section>
     </div>
   </ng-template>

@@ -2,20 +2,31 @@
   <div class="tdx-progress-indicator__header">
     <span class="tdx-progress-indicator__label">{{ label }}</span>
 
-    <span *ngIf="displayedValue" class="tdx-progress-indicator__value">
+    <span *ngIf="valueType === 'fraction' && displayedValue" class="tdx-progress-indicator__value">
       {{ displayedValue }}
     </span>
+
+    <button
+      *ngIf="valueType === 'percentage' && showCancel"
+      type="button"
+      class="tdx-progress-indicator__cancel"
+      aria-label="Cancel"
+      (click)="cancel()">
+      <span class="material-symbols-rounded" aria-hidden="true">cancel</span>
+    </button>
   </div>
 
-  <div
-    class="tdx-progress-indicator__track"
-    role="progressbar"
-    [attr.aria-label]="ariaLabel"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    [attr.aria-valuenow]="progress"
-    [attr.aria-valuetext]="displayedValue || null"
-  >
-    <span class="tdx-progress-indicator__fill" [style.width.%]="progress"></span>
+  <div class="tdx-progress-indicator__progress-row">
+    <tdx-progress-bar
+      class="tdx-progress-indicator__track"
+      [ariaLabel]="ariaLabel"
+      [ariaValueText]="displayedValue || undefined"
+      [progress]="progress"
+      [variant]="valueType === 'fraction' ? 'success' : 'processing'">
+    </tdx-progress-bar>
+
+    <span *ngIf="valueType === 'percentage' && displayedValue" class="tdx-progress-indicator__value tdx-progress-indicator__value--percentage">
+      {{ displayedValue }}
+    </span>
   </div>
 </section>

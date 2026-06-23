@@ -1,4 +1,4 @@
-.tdx-progress-indicator-preview {
+.tdx-progress-bar-preview {
   background: var(--surface-page);
   color: var(--text-neutral-primary);
   display: grid;
@@ -8,7 +8,7 @@
   padding: var(--space-7xl);
 }
 
-.tdx-progress-indicator-preview__theme {
+.tdx-progress-bar-preview__theme {
   background: var(--alias-surface-default);
   border: var(--border-width-xs-1) solid var(--border-neutral-default-secondary);
   border-radius: var(--radius-lg);
@@ -18,67 +18,57 @@
   padding: var(--space-6xl);
 }
 
-.tdx-progress-indicator-preview__header,
-.tdx-progress-indicator-preview__section {
+.tdx-progress-bar-preview__header,
+.tdx-progress-bar-preview__section {
   display: grid;
   gap: var(--space-md);
 }
 
-.tdx-progress-indicator-preview__header h1,
-.tdx-progress-indicator-preview__header p,
-.tdx-progress-indicator-preview__section h2 {
+.tdx-progress-bar-preview__header h1,
+.tdx-progress-bar-preview__header p,
+.tdx-progress-bar-preview__section h2 {
   margin: 0;
 }
 
-.tdx-progress-indicator-preview__header h1,
-.tdx-progress-indicator-preview__section h2 {
+.tdx-progress-bar-preview__header h1,
+.tdx-progress-bar-preview__section h2 {
   font-family: var(--typography-font-family-heading);
   font-size: var(--h6-text-size);
   line-height: var(--h6-line-height);
 }
 
-.tdx-progress-indicator-preview__header h1 {
+.tdx-progress-bar-preview__header h1 {
   color: var(--icon-brand-default);
 }
 
-.tdx-progress-indicator-preview__header p {
+.tdx-progress-bar-preview__header p {
   color: var(--text-neutral-secondary);
   font-size: var(--paragraph-md-text-size);
   line-height: var(--paragraph-md-line-height);
 }
 
-.tdx-progress-indicator-preview__examples {
+.tdx-progress-bar-preview__examples {
   align-items: start;
   column-gap: var(--space-8xl);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.tdx-progress-indicator-preview__section {
+.tdx-progress-bar-preview__section {
   min-width: 0;
 }
 
-.tdx-progress-indicator-preview__section tdx-progress-indicator {
-  --progress-width: 100%;
-}
-
-.tdx-progress-indicator-preview__controls {
-  display: flex;
-  gap: var(--space-lg);
-  margin-top: var(--space-lg);
-}
-
 @media (max-width: 767px) {
-  .tdx-progress-indicator-preview {
+  .tdx-progress-bar-preview {
     gap: var(--space-4xl);
     padding: var(--space-3xl);
   }
 
-  .tdx-progress-indicator-preview__theme {
+  .tdx-progress-bar-preview__theme {
     padding: var(--space-3xl);
   }
 
-  .tdx-progress-indicator-preview__examples {
+  .tdx-progress-bar-preview__examples {
     gap: var(--space-5xl);
     grid-template-columns: 1fr;
   }

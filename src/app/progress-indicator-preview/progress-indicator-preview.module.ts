@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ButtonModule } from '../shared/components/button/button.module';
-import { ProgressIndicatorModule } from '../shared/components/progress-indicator';
+import { ProgressBarModule } from '../shared/components/progress-bar';
 import { ProgressIndicatorPreviewComponent } from './progress-indicator-preview.component';
 
 @NgModule({
   declarations: [ProgressIndicatorPreviewComponent],
   exports: [ProgressIndicatorPreviewComponent],
-  imports: [ButtonModule, CommonModule, ProgressIndicatorModule],
+  imports: [CommonModule, ProgressBarModule],
 })
 export class ProgressIndicatorPreviewModule {}

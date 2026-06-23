@@ -41,6 +41,38 @@ describe('ProgressIndicatorComponent', () => {
     expect(value.textContent?.trim()).toBe('75%');
   });
 
+  it('places the percentage value after the progress track', () => {
+    fixture.componentRef.setInput('valueType', 'percentage');
+    fixture.componentRef.setInput('percentageValue', '75%');
+    fixture.detectChanges();
+
+    const progressRow = fixture.debugElement.query(By.css('.tdx-progress-indicator__progress-row')).nativeElement as HTMLElement;
+    expect(progressRow.children[0].classList).toContain('tdx-progress-indicator__track');
+    expect(progressRow.children[1].textContent?.trim()).toBe('75%');
+  });
+
+  it('shows the cancel action for the percentage value type and emits when clicked', () => {
+    fixture.componentRef.setInput('valueType', 'percentage');
+    fixture.detectChanges();
+
+    const cancelled = jasmine.createSpy('cancelled');
+    component.cancelled.subscribe(cancelled);
+
+    const cancelButton = fixture.debugElement.query(By.css('.tdx-progress-indicator__cancel'));
+    expect(cancelButton).not.toBeNull();
+
+    cancelButton.triggerEventHandler('click');
+    expect(cancelled).toHaveBeenCalled();
+  });
+
+  it('hides the cancel action when requested', () => {
+    fixture.componentRef.setInput('valueType', 'percentage');
+    fixture.componentRef.setInput('showCancel', false);
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('.tdx-progress-indicator__cancel'))).toBeNull();
+  });
+
   it('hides the fraction value when requested', () => {
     fixture.componentRef.setInput('showFractionValue', false);
     fixture.detectChanges();
@@ -60,7 +92,7 @@ describe('ProgressIndicatorComponent', () => {
     fixture.componentRef.setInput('progress', 60);
     fixture.detectChanges();
 
-    const fill = fixture.debugElement.query(By.css('.tdx-progress-indicator__fill')).nativeElement as HTMLElement;
+    const fill = fixture.debugElement.query(By.css('.tdx-progress-bar__fill')).nativeElement as HTMLElement;
     const track = fixture.debugElement.query(By.css('[role="progressbar"]')).nativeElement as HTMLElement;
 
     expect(fill.style.width).toBe('60%');
@@ -73,7 +105,7 @@ describe('ProgressIndicatorComponent', () => {
     fixture.componentRef.setInput('progress', 150);
     fixture.detectChanges();
 
-    const fill = fixture.debugElement.query(By.css('.tdx-progress-indicator__fill')).nativeElement as HTMLElement;
+    const fill = fixture.debugElement.query(By.css('.tdx-progress-bar__fill')).nativeElement as HTMLElement;
     expect(fill.style.width).toBe('100%');
 
     fixture.componentRef.setInput('progress', -20);

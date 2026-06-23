@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path: 'progress-indicator',
     component: ProgressIndicatorPreviewComponent,
-    title: 'TDX Progress Indicator Preview',
+    title: 'TDX Progress Bar Preview',
   },
   {
     path: '**',

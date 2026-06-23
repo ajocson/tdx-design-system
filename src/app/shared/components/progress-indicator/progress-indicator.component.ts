@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { TdxProgressIndicatorValueType } from './progress-indicator.model';
 
 @Component({
@@ -17,6 +17,9 @@ export class ProgressIndicatorComponent {
   @Input() fractionValue = '1/5';
   @Input() showPercentValue = true;
   @Input() percentageValue = '75%';
+  @Input() showCancel = true;
+
+  @Output() cancelled = new EventEmitter<void>();
 
   @Input()
   set progress(value: number) {
@@ -43,5 +46,9 @@ export class ProgressIndicatorComponent {
     return {
       [`tdx-progress-indicator--${this.valueType}`]: true,
     };
+  }
+
+  cancel(): void {
+    this.cancelled.emit();
   }
 }

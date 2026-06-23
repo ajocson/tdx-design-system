@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.tdx-progress-bar {
+  background: var(--progress-bar-track-bg);
+  border-radius: var(--progress-bar-radius);
+  height: var(--progress-bar-height);
+  overflow: hidden;
+  width: 100%;
+}
+
+.tdx-progress-bar__fill {
+  background: var(--progress-bar-brand-fill-bg);
+  border-radius: inherit;
+  display: block;
+  height: 100%;
+}
+
+.tdx-progress-bar--success .tdx-progress-bar__fill {
+  background: var(--progress-bar-success-fill-bg);
+}
+
+.tdx-progress-bar--processing .tdx-progress-bar__fill {
+  background: var(--progress-bar-processing-fill-bg);
+}
