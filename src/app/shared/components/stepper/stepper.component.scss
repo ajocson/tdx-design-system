@@ -3,7 +3,7 @@
 }
 
 .tdx-stepper {
-  color: var(--stepper-label-text);
+  color: var(--stepper-text-default);
   display: grid;
   font-family: var(--typography-font-family-paragraph);
   gap: var(--stepper-gap);
@@ -132,7 +132,7 @@ button.tdx-stepper__step:focus-visible {
 }
 
 .tdx-stepper__label {
-  color: var(--stepper-label-text);
+  color: var(--stepper-text-default);
   font-size: var(--paragraph-sm-text-size);
   font-weight: var(--font-weight-regular);
   line-height: var(--paragraph-sm-line-height);
@@ -219,6 +219,7 @@ button.tdx-stepper__step:focus-visible {
 }
 
 .tdx-stepper__item--current .tdx-stepper__label {
+  color: var(--stepper-text-current);
   font-weight: var(--font-weight-bold);
 }
 

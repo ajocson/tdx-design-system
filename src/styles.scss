@@ -75,6 +75,7 @@
   --background-brand-subtle-brand: #eee6fa;
   --text-neutral-primary: #364154;
   --text-neutral-secondary: #5f6a81;
+  --text-secondary-default: #a82675;
   --text-neutral-inverse: #f9fafb;
   --border-neutral-default-secondary: #c7ced9;
   --border-neutral-default-tertiary: #e6eaf0;
@@ -431,7 +432,8 @@
   --stepper-icon-warning: var(--icon-warning-contrast-default);
   --stepper-icon-disabled: var(--icon-neutral-secondary);
   --stepper-indicator-number-text: var(--text-neutral-inverse);
-  --stepper-label-text: var(--text-neutral-primary);
+  --stepper-text-default: var(--text-neutral-primary);
+  --stepper-text-current: var(--text-secondary-default);
   --stepper-connector-bg-default: var(--border-neutral-default-tertiary);
 }
 
@@ -447,6 +449,7 @@
   --background-brand-subtle-brand: #3a1971;
   --text-neutral-primary: #f9fafb;
   --text-neutral-secondary: #c7ced9;
+  --text-secondary-default: #c13c92;
   --text-neutral-inverse: #f9fafb;
   --border-neutral-default-secondary: #5f6a81;
   --border-neutral-default-tertiary: #454545;
@@ -743,7 +746,8 @@
   --stepper-icon-warning: var(--icon-warning-contrast-default);
   --stepper-icon-disabled: var(--icon-neutral-secondary);
   --stepper-indicator-number-text: var(--text-neutral-inverse);
-  --stepper-label-text: var(--text-neutral-primary);
+  --stepper-text-default: var(--text-neutral-primary);
+  --stepper-text-current: var(--text-secondary-default);
 }
 
 @media (max-width: 767px) {
