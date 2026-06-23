@@ -4,7 +4,9 @@
 }
 
 .tdx-progress-bar {
-  background: var(--progress-bar-track-bg);
+  --progress-bar-fill: var(--progress-brand-fill);
+
+  background: var(--progress-bar-track);
   border-radius: var(--progress-bar-radius);
   height: var(--progress-bar-height);
   overflow: hidden;
@@ -12,16 +14,16 @@
 }
 
 .tdx-progress-bar__fill {
-  background: var(--progress-bar-brand-fill-bg);
+  background: var(--progress-bar-fill);
   border-radius: inherit;
   display: block;
   height: 100%;
 }
 
-.tdx-progress-bar--success .tdx-progress-bar__fill {
-  background: var(--progress-bar-success-fill-bg);
+.tdx-progress-bar--success {
+  --progress-bar-fill: var(--progress-bar-success-fill);
 }
 
-.tdx-progress-bar--processing .tdx-progress-bar__fill {
-  background: var(--progress-bar-processing-fill-bg);
+.tdx-progress-bar--processing {
+  --progress-bar-fill: var(--progress-bar-processing-fill);
 }
